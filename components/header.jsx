@@ -31,6 +31,7 @@ export default function Header() {
     { href: "#projects", label: "Projects" },
     { href: "https://drive.google.com/file/d/1UX0RTtAPboiFriyp60ZP-6Xe89AWUpLh/view?usp=sharing", label: "Resume" },
     { href: "#contact", label: "Contact" },
+
   ];
 
   return (
@@ -53,22 +54,32 @@ export default function Header() {
 
         <nav className="hidden md:flex items-center space-x-1">
           <ul className="flex">
-            {navLinks.map((link, index) => (
-              <motion.li
-                key={link.href}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
+          {navLinks.map((link, index) => (
+            <motion.li
+              key={link.href}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+            >
+              <a
+                href={link.href}
+                onClick={(e) => {
+                  if(link.label !== "Resume"){
+                    e.preventDefault(); // Prevent default anchor behavior
+                    const section = document.querySelector(link.href);
+                    if (section) {
+                      section.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                  }
+                }}
+                className="relative px-4 py-2 text-[#f0f0f0] hover:text-[#9d4edd] transition-colors rounded-md group"
               >
-                <Link
-                  href={link.href}
-                  className="relative px-4 py-2 text-[#f0f0f0] hover:text-[#9d4edd] transition-colors rounded-md group"
-                >
-                  {link.label}
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#9d4edd] to-[#ff5e8f] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-                </Link>
-              </motion.li>
-            ))}
+                {link.label}
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#9d4edd] to-[#ff5e8f] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+              </a>
+            </motion.li>
+          ))}
+
           </ul>
         </nav>
 

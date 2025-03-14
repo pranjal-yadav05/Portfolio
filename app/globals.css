@@ -58,6 +58,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @layer base {
   * {
     border-color: #e5e7eb; /* Light gray border */
