@@ -31,7 +31,6 @@ export default function Header() {
     { href: "#projects", label: "Projects" },
     { href: "https://drive.google.com/file/d/1UX0RTtAPboiFriyp60ZP-6Xe89AWUpLh/view?usp=sharing", label: "Resume" },
     { href: "#contact", label: "Contact" },
-
   ];
 
   return (
@@ -79,7 +78,6 @@ export default function Header() {
               </a>
             </motion.li>
           ))}
-
           </ul>
         </nav>
 
@@ -100,22 +98,17 @@ export default function Header() {
         </div>
       </div>
 
+      {/* Mobile menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/70 md:hidden z-50"
-            onClick={toggleMenu}
-          >
+          <div className="fixed inset-0 bg-black md:hidden z-50" style={{ backgroundColor: "rgba(0,0,0,0.7)" }}>
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="absolute right-0 top-0 h-full w-4/5 max-w-sm bg-[#1a1a1a] shadow-xl p-6"
+              className="fixed right-0 top-0 h-full w-4/5 max-w-sm bg-[#1a1a1a] shadow-xl p-6"
+              style={{ backgroundColor: "#1a1a1a" }}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-end">
@@ -143,9 +136,9 @@ export default function Header() {
                 ))}
               </ul>
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </header>
   );
-}
+} 

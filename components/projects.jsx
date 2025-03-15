@@ -119,7 +119,7 @@ export default function Projects() {
               className="bg-[#2d2d2d] rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300"
             >
               {/* Project Image */}
-              <div className="relative overflow-hidden h-48">
+              <div onClick={() => window.open(project.demo, "_blank")} className="relative overflow-hidden h-48 cursor-pointer">
                 <Image
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
