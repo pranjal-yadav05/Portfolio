@@ -120,12 +120,11 @@ export default function Projects() {
             >
               {/* Project Image */}
               <div onClick={() => window.open(project.demo, "_blank")} className="relative overflow-hidden h-48 cursor-pointer">
-                <Image
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.title}
-                  width={500}
-                  height={300}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                <iframe
+                  src={project.demo}
+                  className="w-full h-48 border-none"
+                  sandbox="allow-scripts allow-same-origin"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#121212] to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300"></div>
               </div>
