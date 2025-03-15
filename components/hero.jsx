@@ -3,78 +3,105 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Twitter, Code, Zap } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Hero() {
-  // Animation variants for staggered animations
+  const [isMobile, setIsMobile] = useState(false);
+  const router = useRouter();
+  // Detect mobile devices
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Animation variants for staggered animations - simplified for mobile
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: { 
-        staggerChildren: 0.15,
+        staggerChildren: isMobile ? 0.1 : 0.15,
         delayChildren: 0.2
       }
     }
   };
   
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    hidden: { opacity: 0, y: isMobile ? 15 : 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: isMobile ? 0.4 : 0.6 } 
+    }
   };
 
   return (
     <section id="home" className="min-h-screen flex flex-col items-center justify-center py-16 relative overflow-hidden">
       {/* Dark gradient background with animated noise texture */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#0a0a0a] to-[#121212] animated-bg" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#0a0a0a] to-[#121212]" />
 
-      {/* Enhanced animated background elements with more variety */}
-      <div className="absolute inset-0 -z-5 overflow-hidden">
-        <motion.div 
-          initial={{ opacity: 0.15 }}
-          animate={{ 
-            opacity: [0.15, 0.35, 0.15],
-            scale: [1, 1.3, 1],
-            x: [0, 50, 0],
-            y: [0, -30, 0]
-          }}
-          transition={{ 
-            duration: 15, 
-            repeat: Infinity,
-            repeatType: "reverse" 
-          }}
-          className="absolute top-20 left-10 w-96 h-96 bg-[#9d4edd]/10 rounded-full blur-3xl" 
-        />
-        <motion.div 
-          initial={{ opacity: 0.15 }}
-          animate={{ 
-            opacity: [0.15, 0.4, 0.15],
-            scale: [1.1, 1.4, 1.1],
-            x: [0, -40, 0],
-            y: [0, 20, 0]
-          }}
-          transition={{ 
-            duration: 18, 
-            repeat: Infinity,
-            repeatType: "reverse",
-            delay: 2 
-          }}
-          className="absolute bottom-20 right-10 w-96 h-96 bg-[#ff5e8f]/10 rounded-full blur-3xl" 
-        />
-        <motion.div 
-          initial={{ opacity: 0.1 }}
-          animate={{ 
-            opacity: [0.1, 0.3, 0.1],
-            scale: [0.8, 1.2, 0.8],
-          }}
-          transition={{ 
-            duration: 20, 
-            repeat: Infinity,
-            repeatType: "reverse",
-            delay: 5 
-          }}
-          className="absolute top-1/2 left-1/3 w-64 h-64 bg-[#00d4ff]/10 rounded-full blur-3xl" 
-        />
-      </div>
+      {/* Conditionally render simplified background animations for mobile */}
+      {!isMobile && (
+        <div className="absolute inset-0 -z-5 overflow-hidden">
+          <motion.div 
+            initial={{ opacity: 0.15 }}
+            animate={{ 
+              opacity: [0.15, 0.35, 0.15],
+              scale: [1, 1.3, 1],
+              x: [0, 50, 0],
+              y: [0, -30, 0]
+            }}
+            transition={{ 
+              duration: 15, 
+              repeat: Infinity,
+              repeatType: "reverse" 
+            }}
+            className="absolute top-20 left-10 w-96 h-96 bg-[#9d4edd]/10 rounded-full blur-3xl" 
+          />
+          <motion.div 
+            initial={{ opacity: 0.15 }}
+            animate={{ 
+              opacity: [0.15, 0.4, 0.15],
+              scale: [1.1, 1.4, 1.1],
+              x: [0, -40, 0],
+              y: [0, 20, 0]
+            }}
+            transition={{ 
+              duration: 18, 
+              repeat: Infinity,
+              repeatType: "reverse",
+              delay: 2 
+            }}
+            className="absolute bottom-20 right-10 w-96 h-96 bg-[#ff5e8f]/10 rounded-full blur-3xl" 
+          />
+          <motion.div 
+            initial={{ opacity: 0.1 }}
+            animate={{ 
+              opacity: [0.1, 0.3, 0.1],
+              scale: [0.8, 1.2, 0.8],
+            }}
+            transition={{ 
+              duration: 20, 
+              repeat: Infinity,
+              repeatType: "reverse",
+              delay: 5 
+            }}
+            className="absolute top-1/2 left-1/3 w-64 h-64 bg-[#00d4ff]/10 rounded-full blur-3xl" 
+          />
+        </div>
+      )}
+
+      {/* For mobile, use a static gradient background instead of animations */}
+      {isMobile && (
+        <div className="absolute inset-0 -z-5 bg-gradient-radial from-[#9d4edd]/5 via-transparent to-transparent opacity-50" />
+      )}
 
       <div className="container mx-auto px-4 flex items-center justify-center w-full">
         <motion.div 
@@ -101,13 +128,14 @@ export default function Hero() {
             <motion.div variants={itemVariants} className="relative mb-8">
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-2xl md:text-3xl font-bold">
                 <span className="text-[#c0c0c0]">I'm a</span>
+                {/* Simplified text animation for mobile */}
                 <div className="h-10 overflow-hidden">
                   <motion.div
                     animate={{
                       y: [0, -40, -80, -120, -160, -120, -80, -40, 0],
                     }}
                     transition={{
-                      duration: 8,
+                      duration: isMobile ? 10 : 8, // Slower on mobile
                       repeat: Infinity,
                       repeatType: "loop",
                       ease: "easeInOut",
@@ -132,8 +160,8 @@ export default function Hero() {
             <motion.div variants={itemVariants} className="flex flex-wrap justify-center lg:justify-start gap-4 mb-10">
               <motion.a
                 href="#projects"
-                className="px-8 py-4 bg-gradient-to-r from-[#9d4edd] to-[#ff5e8f] text-white rounded-lg shadow-lg hover:shadow-xl hover:shadow-[#9d4edd]/20 transition-all"
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(157, 78, 221, 0.25)" }}
+                className="px-8 py-4 bg-gradient-to-r from-[#9d4edd] to-[#ff5e8f] text-white rounded-lg shadow-lg transition-all"
+                whileHover={!isMobile ? { scale: 1.05, boxShadow: "0 20px 25px -5px rgba(157, 78, 221, 0.25)" } : {}}
                 whileTap={{ scale: 0.95 }}
               >
                 <span className="flex items-center gap-2">
@@ -143,8 +171,8 @@ export default function Hero() {
               </motion.a>
               <motion.a
                 href="#contact"
-                className="px-8 py-4 bg-[#1a1a1a] border border-[#9d4edd]/50 text-[#f0f0f0] rounded-lg shadow-lg hover:shadow-xl hover:border-[#9d4edd] transition-all"
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(10, 10, 10, 0.3)" }}
+                className="px-8 py-4 bg-[#1a1a1a] border border-[#9d4edd]/50 text-[#f0f0f0] rounded-lg shadow-lg transition-all"
+                whileHover={!isMobile ? { scale: 1.05, boxShadow: "0 20px 25px -5px rgba(10, 10, 10, 0.3)" } : {}}
                 whileTap={{ scale: 0.95 }}
               >
                 <span className="flex items-center gap-2">
@@ -167,10 +195,10 @@ export default function Hero() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`p-3 ${color} rounded-lg text-white transition-all flex items-center gap-2`}
-                    whileHover={{ 
+                    whileHover={!isMobile ? { 
                       y: -5,
                       boxShadow: `0 10px 15px -3px ${shadowColor}`
-                    }}
+                    } : {}}
                     whileTap={{ scale: 0.9 }}
                   >
                     <Icon size={22} />
@@ -185,54 +213,64 @@ export default function Hero() {
             variants={itemVariants}
             className="relative flex items-center justify-center mt-8 lg:mt-0"
           >
-            {/* Animated polygonal frame around image */}
-            <motion.div 
-              animate={{ 
-                rotate: [0, 360],
-              }}
-              transition={{ 
-                duration: 20, 
-                repeat: Infinity,
-                ease: "linear"
-              }}
-              className="absolute inset-0 flex items-center justify-center"
-            >
-              <svg width="450" height="450" viewBox="0 0 100 100" fill="none" className="absolute">
-                <polygon 
-                  points="50,5 65,35 95,50 65,65 50,95 35,65 5,50 35,35" 
-                  stroke="url(#grad1)" 
-                  strokeWidth="2"
-                  fill="none"
-                />
-                <defs>
-                  <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#9d4edd" />
-                    <stop offset="100%" stopColor="#ff5e8f" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </motion.div>
+            {/* Simple non-animated border for mobile, animated frame for desktop */}
+            {isMobile ? (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute w-full h-full rounded-2xl border-2 border-[#9d4edd]/30"></div>
+              </div>
+            ) : (
+              <motion.div 
+                animate={{ 
+                  rotate: [0, 360],
+                }}
+                transition={{ 
+                  duration: 20, 
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                className="absolute inset-0 flex items-center justify-center"
+              >
+                <svg width="450" height="450" viewBox="0 0 100 100" fill="none" className="absolute">
+                  <polygon 
+                    points="50,5 65,35 95,50 65,65 50,95 35,65 5,50 35,35" 
+                    stroke="url(#grad1)" 
+                    strokeWidth="2"
+                    fill="none"
+                  />
+                  <defs>
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#9d4edd" />
+                      <stop offset="100%" stopColor="#ff5e8f" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </motion.div>
+            )}
             
-            <motion.div 
-              animate={{ 
-                boxShadow: [
-                  "0 0 25px 8px rgba(157, 78, 221, 0.3)", 
-                  "0 0 35px 12px rgba(255, 94, 143, 0.3)", 
-                  "0 0 25px 8px rgba(157, 78, 221, 0.3)"
-                ]
-              }}
-              transition={{ 
-                duration: 4, 
-                repeat: Infinity,
-                repeatType: "reverse" 
-              }}
-              className="absolute inset-0 rounded-2xl opacity-70 flex items-center justify-center" 
-            />
+            {/* Simplified shadow effect for mobile */}
+            {!isMobile && (
+              <motion.div 
+                animate={{ 
+                  boxShadow: [
+                    "0 0 25px 8px rgba(157, 78, 221, 0.3)", 
+                    "0 0 35px 12px rgba(255, 94, 143, 0.3)", 
+                    "0 0 25px 8px rgba(157, 78, 221, 0.3)"
+                  ]
+                }}
+                transition={{ 
+                  duration: 4, 
+                  repeat: Infinity,
+                  repeatType: "reverse" 
+                }}
+                className="absolute inset-0 rounded-2xl opacity-70 flex items-center justify-center" 
+              />
+            )}
             
+            {/* Simplified floating animation for mobile */}
             <motion.div
-              animate={{
+              animate={!isMobile ? {
                 y: [0, -10, 0],
-              }}
+              } : {}}
               transition={{
                 duration: 4,
                 repeat: Infinity,
@@ -263,11 +301,20 @@ export default function Hero() {
       >
         <span className="text-sm text-[#c0c0c0] mb-2">Explore More</span>
         <motion.div
-          animate={{ y: [0, 10, 0] }}
+          animate={!isMobile ? { y: [0, 10, 0] } : {}}
           transition={{ duration: 1.5, repeat: Infinity }}
           className="p-3 rounded-full bg-[#1a1a1a] border border-[#9d4edd]/30 hover:border-[#9d4edd] cursor-pointer transition-all"
         >
-          <ArrowDown size={20} className="text-[#9d4edd]" />
+          <ArrowDown 
+            onClick={()=>{
+              const section = document.querySelector("#about");
+              if (section) {
+                section.scrollIntoView({ behavior: "smooth", block: "start" });
+              }
+            }} 
+            size={20} 
+            className="text-[#9d4edd]" 
+          />
         </motion.div>
       </motion.div>
     </section>

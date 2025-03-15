@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaPython, FaDatabase, FaGitAlt} from "react-icons/fa"
@@ -7,6 +8,7 @@ import { SiJavascript, SiTailwindcss, SiPhp, SiMongodb, SiPostman } from "react-
 import { BiLogoVisualStudio, BiLogoSpringBoot } from "react-icons/bi";
 import { BsFillPeopleFill, BsLightbulbFill } from "react-icons/bs";
 import { RiNextjsFill } from "react-icons/ri";
+import { ChevronDown, ChevronUp, X } from "lucide-react";
 
 // Define skills with icons and projects they were used in
 const skills = [
@@ -102,6 +104,9 @@ export default function Skills() {
     triggerOnce: true,
     threshold: 0.1,
   });
+  
+  // State to track which skill's projects are currently showing on mobile
+  const [activeSkill, setActiveSkill] = useState(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -114,6 +119,15 @@ export default function Skills() {
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
+  // Toggle active skill for mobile view
+  const toggleActiveSkill = (skillName) => {
+    if (activeSkill === skillName) {
+      setActiveSkill(null);
+    } else {
+      setActiveSkill(skillName);
+    }
   };
 
   return (
@@ -194,6 +208,8 @@ export default function Skills() {
                 <div className="space-y-4">
                   {skillGroup.items.map((skill, index) => {
                     const Icon = skill.icon;
+                    const isActive = activeSkill === `${skillGroup.category}-${skill.name}`;
+                    
                     return (
                       <motion.div
                         key={skill.name}
@@ -211,14 +227,32 @@ export default function Skills() {
                           </div>
                           <span className="text-[#f0f0f0] font-medium">{skill.name}</span>
                           
-                          {/* Expandable projects area */}
+                          {/* Projects button - both for desktop hover and mobile click */}
                           <div className="ml-auto relative">
-                            <button className="text-sm text-[#c0c0c0] hover:text-white bg-[#202020] hover:bg-[#303030] px-2 py-1 rounded-full transition-all duration-300 group-hover:opacity-100 opacity-70">
+                            {/* Desktop hover tooltip button */}
+                            <button 
+                              className="hidden md:block text-sm text-[#c0c0c0] hover:text-white bg-[#202020] hover:bg-[#303030] px-2 py-1 rounded-full transition-all duration-300 group-hover:opacity-100 opacity-70"
+                            >
                               Projects
                             </button>
                             
-                            {/* Projects tooltip */}
-                            <div className="absolute right-0 mt-2 w-48 bg-[#1a1a1a] shadow-xl rounded-lg p-3 z-20 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 -translate-y-2 group-hover:translate-y-0">
+                            {/* Mobile toggle button */}
+                            <button 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                toggleActiveSkill(`${skillGroup.category}-${skill.name}`);
+                              }}
+                              className="md:hidden text-sm text-[#c0c0c0] hover:text-white bg-[#202020] hover:bg-[#303030] px-2 py-1 rounded-full transition-all duration-300 flex items-center gap-1"
+                            >
+                              <span>Projects</span>
+                              {isActive ? 
+                                <ChevronUp className="w-3 h-3" /> : 
+                                <ChevronDown className="w-3 h-3" />
+                              }
+                            </button>
+                            
+                            {/* Desktop hover projects tooltip */}
+                            <div className="absolute bottom-full mb-2 right-0 w-48 bg-[#1a1a1a] shadow-xl rounded-lg p-3 z-50 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 translate-y-2 group-hover:translate-y-0 hidden md:block">
                               <h4 className="text-sm font-semibold mb-2 text-white">Used in projects:</h4>
                               <ul className="space-y-1">
                                 {skill.projects.map((project, idx) => (
@@ -231,6 +265,34 @@ export default function Skills() {
                             </div>
                           </div>
                         </div>
+                        
+                        {/* Mobile projects dropdown - shows when active */}
+                        {isActive && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="bg-[#1a1a1a] p-3 rounded-lg mt-1 mb-2 mx-2"
+                          >
+                            <div className="flex justify-between items-center mb-2">
+                              <h4 className="text-sm font-semibold text-white">Used in projects:</h4>
+                              <button 
+                                onClick={() => setActiveSkill(null)}
+                                className="text-[#c0c0c0] hover:text-white"
+                              >
+                                <X className="w-3 h-3" />
+                              </button>
+                            </div>
+                            <ul className="space-y-1">
+                              {skill.projects.map((project, idx) => (
+                                <li key={idx} className="text-xs text-[#c0c0c0] flex items-center">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-[#9d4edd] to-[#ff5e8f] mr-2"></span>
+                                  {project}
+                                </li>
+                              ))}
+                            </ul>
+                          </motion.div>
+                        )}
                       </motion.div>
                     );
                   })}

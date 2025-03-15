@@ -35,7 +35,7 @@ const projects = [
     image: "/smartblog.png",
     logo: "/smartblog-logo.png",
     repo: "https://github.com/pranjal-yadav05/SmartBlog",
-    demo: null,
+    demo: "https://smart-blog-one.vercel.app",
     tags: ["Spring Boot", "Next.js", "Gemini"],
   },
 ];
@@ -187,21 +187,9 @@ export default function Projects() {
                       whileHover={{ scale: 1.05 }}
                     >
                       <ExternalLink size={18} className="mr-1" />
-                      <span>Demo</span>
+                      <span>Visit</span>
                     </motion.a>
                   )}
-
-                  {/* Arrow Button (GitHub link) */}
-                  <motion.a
-                    href={project.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#ff5e8f] hover:text-[#ff3d7f]"
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 400 }}
-                  >
-                    <ArrowRight size={20} />
-                  </motion.a>
                 </div>
               </div>
 
