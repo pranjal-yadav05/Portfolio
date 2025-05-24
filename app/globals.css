@@ -1,41 +1,18 @@
 @import "tailwindcss";
 
+/* Ensure dark mode properly applies to all elements */
+html {
+  background-color: #121212;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #121212;
+  color: #ffffff;
+}
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
-    --radius: 0.5rem;
-    --border: 214.3 31.8% 91.4%;
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --secondary: 240 5% 64.9%;
-    --accent: 12 100% 50%;
-    --destructive: 0 100% 50%;
-    --muted: 220 13% 91%;
-    --popover: 0 0% 100%;
-    --card: 0 0% 100%;
-  }
-
-  .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
@@ -55,6 +32,7 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 224.3 76.3% 48%;
+    --radius: 0.5rem;
   }
 }
 
@@ -64,13 +42,8 @@ html {
 
 @layer base {
   * {
-    border-color: #e5e7eb; /* Light gray border */
+    border-color: #2d2d2d; /* Dark gray border */
   }
-  
-  body {
-    background-color: #ffffff; /* Change this to your desired background color */
-    color: #111827; /* Adjust for text readability */
-  }  
 }
 
 /* Custom animations */
@@ -113,14 +86,9 @@ html {
 
 /* Glass effect */
 .glass {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(17, 24, 39, 0.75);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
-.dark .glass {
-  background: rgba(17, 24, 39, 0.75);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -130,27 +98,14 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #1f2937;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #6366f1;
+  background: #8b5cf6;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4f46e5;
-}
-
-.dark ::-webkit-scrollbar-track {
-  background: #1f2937;
-}
-
-.dark ::-webkit-scrollbar-thumb {
-  background: #8b5cf6;
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
   background: #7c3aed;
 }
-

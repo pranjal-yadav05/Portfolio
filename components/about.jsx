@@ -194,8 +194,7 @@ export default function About() {
                     <motion.div
                       whileHover={{ rotate: 5 }}
                       className="w-12 h-12 flex items-center justify-center mx-auto mb-3 rounded-full"
-                      style={{ backgroundColor: `${color}20` }} // Light opacity
-                    >
+                      style={{ backgroundColor: `${color}20` }}>
                       <Icon size={24} style={{ color: color }} />
                     </motion.div>
                     <h4 className="font-medium text-[#f0f0f0]">{label}</h4>
