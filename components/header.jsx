@@ -61,7 +61,7 @@ export default function Header() {
     { href: "#skills", label: "Skills" },
     { href: "#projects", label: "Projects" },
     {
-      href: "https://drive.google.com/file/d/1UX0RTtAPboiFriyp60ZP-6Xe89AWUpLh/view?usp=sharing",
+      href: "https://drive.google.com/file/d/1M-VYVi8Z6ZNDPSNy0JpxGCsIXHo5YztB/view?usp=drivesdk",
       label: "Resume",
     },
     { href: "#contact", label: "Contact" },
