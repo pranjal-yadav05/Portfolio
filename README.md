@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Personal Portfolio Website
 
-## Getting Started
+A modern, responsive portfolio website built with Next.js and Tailwind CSS. This portfolio showcases my work, skills, and professional journey in an elegant and interactive way.
 
-First, run the development server:
+## 📸 Preview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+**Live Demo:** [pranjalyadav.vercel.app](https://pranjalyadav.vercel.app)
+
+![Portfolio Preview 1](/public/p1.png)
+_Main view of the portfolio website_
+
+![Portfolio Preview 2](/public/p2.png)
+_Projects and skills section_
+
+![Portfolio Preview 3](/public/p3.png)
+_Interactive coding section with animations_
+
+## 🚀 Features
+
+- **Modern Design**: Clean and professional design with smooth animations
+- **Responsive**: Fully responsive layout that works on all devices
+- **Dark/Light Mode**: Theme switching capability
+- **Interactive Sections**:
+  - Hero section with animated introduction
+  - About section
+  - Skills showcase
+  - Projects portfolio
+  - Contact form
+  - Footer with social links
+
+## 🛠️ Technologies Used
+
+- **Framework**: Next.js 15.2.2
+- **Styling**: Tailwind CSS 4.0
+- **Animations**:
+  - Framer Motion
+  - GSAP
+- **Icons**:
+  - Lucide React
+  - React Icons
+- **Theme**: next-themes for dark/light mode
+- **Development**: ESLint for code quality
+
+## 🏃‍♂️ Getting Started
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/pranjal-yadav05/Portfolio
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 📦 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+
+## 🎨 Project Structure
+
+```
+portfolio/
+├── app/              # Next.js app directory
+├── components/       # React components
+│   ├── about.jsx
+│   ├── contact.jsx
+│   ├── footer.jsx
+│   ├── header.jsx
+│   ├── hero.jsx
+│   ├── projects.jsx
+│   ├── skills.jsx
+│   └── theme-provider.jsx
+├── public/          # Static assets
+└── lib/            # Utility functions and configurations
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔧 Configuration
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+The project uses several configuration files:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `tailwind.config.js` - Tailwind CSS configuration
+- `next.config.mjs` - Next.js configuration
+- `postcss.config.mjs` - PostCSS configuration
+- `eslint.config.mjs` - ESLint configuration
 
-## Learn More
+## 📝 License
 
-To learn more about Next.js, take a look at the following resources:
+This project is open source and available under the MIT License.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 👥 Contact
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Feel free to reach out to me through the contact form on the website or via the social links in the footer.
