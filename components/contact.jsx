@@ -62,8 +62,8 @@ export default function Contact() {
               Get In Touch
             </h2>
             <p className="text-[#c0c0c0] mb-8">
-              Feel free to reach out for collaborations, opportunities, or just
-              to say hello!
+              Feel free to reach out - for collaborations, opportunities, or
+              accidental deep conversations
             </p>
 
             <div className="space-y-6 mb-8">

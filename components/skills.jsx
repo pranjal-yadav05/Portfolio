@@ -78,14 +78,17 @@ export default function Skills() {
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         className="container mx-auto px-4 relative z-10">
-        <motion.div variants={itemVariants} className="mb-12 md:mb-16 text-center">
+        <motion.div
+          variants={itemVariants}
+          className="mb-12 md:mb-16 text-center">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-3 text-[#f0f0f0]">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-emerald-300">
               Core Tech Stacks
             </span>
           </h2>
           <p className="text-[#c0c0c0] max-w-2xl mx-auto text-sm md:text-base mt-4">
-            The three stacks I reach for most often&mdash;from Java backends to full‑stack JavaScript products.
+            Three stacks I work with most, spanning Java backends and full-stack
+            JavaScript
           </p>
         </motion.div>
 
@@ -109,8 +112,8 @@ export default function Skills() {
               </div>
             </div>
             <p className="text-sm text-[#d0d0d0] leading-relaxed">
-              Building robust REST APIs, authentication flows, and production-ready
-              services with Spring Boot and SQL databases.
+              Building robust REST APIs, authentication flows, and
+              production-ready services with Spring Boot and SQL databases.
             </p>
             <div className="mt-1 flex flex-wrap gap-2 text-xs">
               <span className="px-3 py-1 rounded-full bg-emerald-400/10 text-emerald-300 border border-emerald-400/30">
@@ -139,8 +142,9 @@ export default function Skills() {
               </div>
             </div>
             <p className="text-sm text-[#d0d0d0] leading-relaxed">
-              Strong foundation in core Java, OOP, collections, and backend development
-              patterns used across my academic and personal projects.
+              Strong foundation in core Java, OOP, collections, and backend
+              development patterns used across my academic and personal
+              projects.
             </p>
             <div className="mt-1 flex flex-wrap gap-2 text-xs">
               <span className="px-3 py-1 rounded-full bg-[#1e293b] text-[#e5e7eb] border border-[#334155]">
@@ -175,8 +179,8 @@ export default function Skills() {
               </div>
             </div>
             <p className="text-sm text-[#d0d0d0] leading-relaxed">
-              End‑to‑end applications with React/Next.js, Node.js/Express, and MongoDB,
-              including payments, auth, and real‑time features.
+              End‑to‑end applications with React/Next.js, Node.js/Express, and
+              MongoDB, including payments, auth, and real‑time features.
             </p>
             <div className="mt-1 flex flex-wrap gap-2 text-xs">
               <span className="px-3 py-1 rounded-full bg-[#022c22] text-[#6ee7b7] border border-[#10b981]/40">

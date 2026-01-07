@@ -74,8 +74,7 @@ export default function About() {
             </span>
           </h2>
           <p className="text-[#c0c0c0] max-w-2xl mx-auto">
-            Get to know more about me, my background, and what drives my passion
-            for technology.
+            Who the hell is this guy?
           </p>
         </motion.div>
 
@@ -121,51 +120,41 @@ export default function About() {
                 </h3>
 
                 <p className="text-[#c0c0c0] mb-6 leading-relaxed">
-                  A passionate learner and programmer with a love for technology
-                  and innovation. Currently, I'm pursuing my Bachelor's degree
-                  in Information Technology at Dharmsinh Desai University.
+                  This is not AI slop. This is me. I tend to be many things at
+                  once, and as time goes on, I often lose interest in my
+                  interests and jump between them - sometimes unexpectedly.
                 </p>
 
                 <motion.div
                   className="overflow-hidden transition-all duration-500"
                   style={{ maxHeight: expanded ? "1000px" : "0" }}>
                   <p className="text-[#c0c0c0] leading-relaxed mb-4">
-                    From a young age, I've been captivated by the endless
-                    possibilities that technology brings. Whether it's coding up
-                    a new project or exploring the latest advancements in the
-                    tech industry, I thrive on the excitement of learning and
-                    experimenting with new ideas. As a smart learner, I believe
-                    in the power of continuous growth and education.
+                    One day I might be an atheist, and the next I’m listening to
+                    Damodar Ashtakam in absolute bliss. People don’t stay the
+                    same for long - and neither do I. I’ve grown comfortable
+                    with that contradiction.
                   </p>
+
                   <p className="text-[#c0c0c0] leading-relaxed mb-4">
-                    Every challenge I face is an opportunity to expand my
-                    knowledge and improve my skills. Whether it's mastering a
-                    new programming language or delving into complex algorithms,
-                    I'm always eager to push myself further and broaden my
-                    understanding of the digital landscape.
+                    What *does* stay constant, though, is my love for music and
+                    art. I’ve been exploring different kinds of music for years
+                    now, and I picked up the guitar about two years ago. Lately,
+                    I’ve hit that familiar learning plateau and find myself
+                    thinking about fingerstyle, electric guitars, and leaning
+                    more into rock.
                   </p>
+
                   <p className="text-[#c0c0c0] leading-relaxed mb-4">
-                    Throughout my academic journey, I've had the privilege of
-                    working on a variety of exciting projects. From developing
-                    web applications to creating innovative software solutions,
-                    each project has been a chance to apply my skills in
-                    real-world scenarios and make a meaningful impact.
+                    I also write - quietly. I post blogs somewhere on the
+                    internet 🙊, not really meant to be discovered. Writing
+                    helps me process emotions, thoughts, and the strange phases
+                    that life keeps throwing my way.
                   </p>
-                  <p className="text-[#c0c0c0] leading-relaxed mb-4">
-                    Outside of coding, you'll often find me exploring the latest
-                    tech trends, attending hackathons, or collaborating with
-                    fellow enthusiasts on passion projects. I'm a firm believer
-                    in the power of collaboration and community, and I'm always
-                    looking for opportunities to connect with like-minded
-                    individuals who share my passion for technology.
-                  </p>
+
                   <p className="text-[#c0c0c0] leading-relaxed">
-                    In essence, I'm a curious and driven individual who's
-                    passionate about leveraging technology to solve problems and
-                    make a positive difference in the world. I'm excited to see
-                    where this journey takes me next, and I can't wait to
-                    continue learning, growing, and pushing the boundaries of
-                    what's possible in the world of IT and beyond.
+                    I’m not very social, but if I know you, I’ll definitely
+                    wave. This space is just a small window into how I think,
+                    feel, and occasionally overthink.
                   </p>
                 </motion.div>
 

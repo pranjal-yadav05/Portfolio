@@ -28,8 +28,7 @@ export default function Footer() {
               Pranjal Yadav
             </h2>
             <p className="text-gray-400 mb-4 max-w-md">
-              Turning innovative ideas into impactful solutions through code and
-              creativity.
+              Who the hell reads a footer?
             </p>
             {/* Social Links */}
             <div className="flex space-x-4 mb-6">
@@ -77,7 +76,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 mt-10 pt-6 text-center">
           <p className="text-gray-400">
-            © {currentYear} Pranjal Yadav. All rights reserved.
+            © {currentYear} Pranjal Yadav. All rights go to AI.
           </p>
         </div>
       </div>

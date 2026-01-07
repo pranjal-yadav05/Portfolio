@@ -101,15 +101,16 @@ export default function Projects() {
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         className="container mx-auto px-4 relative z-10">
-        <motion.div variants={itemVariants} className="mb-10 md:mb-14 text-center">
+        <motion.div
+          variants={itemVariants}
+          className="mb-10 md:mb-14 text-center">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-3 text-white">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-emerald-300">
               Selected Projects
             </span>
           </h2>
           <p className="text-[#c0c0c0] max-w-2xl mx-auto text-sm md:text-base mt-4">
-            A mix of shipped products and experiments that capture how I like to
-            design, build, and ship software.
+            Some things I’ve built (and broken) along the way
           </p>
         </motion.div>
 
