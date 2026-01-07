@@ -65,7 +65,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-20 bg-[#1a1a1a] relative overflow-hidden">
+      className="min-h-screen py-20 bg-[#1a1a1a] relative overflow-hidden flex items-center">
       {/* Background Decorations */}
       <div className="absolute inset-0 -z-10 opacity-30 pointer-events-none">
         <motion.div
@@ -101,19 +101,19 @@ export default function Projects() {
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
         className="container mx-auto px-4 relative z-10">
-        <motion.div variants={itemVariants} className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 inline-block relative text-white">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#9d4edd] to-[#ff5e8f]">
-              My Projects
+        <motion.div variants={itemVariants} className="mb-10 md:mb-14 text-center">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-3 text-white">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-emerald-300">
+              Selected Projects
             </span>
-            <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#9d4edd] to-[#ff5e8f] rounded-full"></span>
           </h2>
-          <p className="text-[#c0c0c0] max-w-2xl mx-auto">
-            Explore some of my recent work and personal projects
+          <p className="text-[#c0c0c0] max-w-2xl mx-auto text-sm md:text-base mt-4">
+            A mix of shipped products and experiments that capture how I like to
+            design, build, and ship software.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}

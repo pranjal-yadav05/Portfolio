@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Twitter, Code, Zap } from "lucide-react";
+import NowPlaying from "./nowplaying";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -42,6 +43,17 @@ export default function Hero() {
     },
   };
 
+  const traitDescriptions = {
+    Guitarist:
+      "I can comfortably play open chords and barre chords, and I’m currently learning finger-style to add more dynamics and melody to my playing.",
+    "Music Enthusiast":
+      "I enjoy discovering different kinds of music—from alternative rock (currently obsessed with Arctic Monkeys) to hip-hop (Kanye West), R&B (The Weeknd, Michael Jackson), and even tracks I can’t quite label but still love.",
+    Sketcher:
+      "I enjoy sketching characters and scenes in my free time—it helps me think visually and translate ideas into shapes, lines, and stories.",
+    "Someone Who Enjoys Philosophy":
+      "I like reading and reflecting on philosophy, especially around consciousness, meaning, and how we make decisions in a complex world.",
+  };
+
   return (
     <section
       id="home"
@@ -65,7 +77,7 @@ export default function Hero() {
               repeat: Infinity,
               repeatType: "reverse",
             }}
-            className="absolute top-20 left-10 w-96 h-96 bg-[#9d4edd]/10 rounded-full blur-3xl"
+            className="absolute top-20 left-10 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl"
           />
           <motion.div
             initial={{ opacity: 0.15 }}
@@ -81,7 +93,7 @@ export default function Hero() {
               repeatType: "reverse",
               delay: 2,
             }}
-            className="absolute bottom-20 right-10 w-96 h-96 bg-[#ff5e8f]/10 rounded-full blur-3xl"
+            className="absolute bottom-20 right-10 w-96 h-96 bg-sky-400/10 rounded-full blur-3xl"
           />
           <motion.div
             initial={{ opacity: 0.1 }}
@@ -113,27 +125,116 @@ export default function Hero() {
           className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 w-full max-w-6xl">
           <div className="flex-1 text-center lg:text-left">
             <motion.div variants={itemVariants}>
-              <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
-                <div className="h-1 w-6 bg-gradient-to-r from-[#9d4edd] to-[#ff5e8f] rounded-full"></div>
-                <span className="text-lg font-medium text-[#ff5e8f]">
-                  Hello, I'm
-                </span>
-                <div className="h-1 w-6 bg-gradient-to-r from-[#ff5e8f] to-[#9d4edd] rounded-full"></div>
+              <div className="flex items-center justify-center lg:justify-start gap-2 mb-4 text-sm md:text-base text-[#9ca3af]">
+                <div className="h-px w-8 bg-gradient-to-r from-sky-500/60 to-sky-400/20 rounded-full" />
+                <span className="uppercase tracking-[0.18em]">Hello, I'm</span>
+                <div className="h-px w-8 bg-gradient-to-r from-sky-400/20 to-sky-500/60 rounded-full" />
               </div>
             </motion.div>
 
             <motion.h1
               variants={itemVariants}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-[#f5f5f5]">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-[#f0f0f0]">
+              className="text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 text-[#f9fafb] tracking-tight">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#f9fafb] to-[#d1d5db]">
                 Pranjal Yadav
               </span>
             </motion.h1>
 
-            <motion.div variants={itemVariants} className="relative mb-8">
+            {isMobile && (
+              <div className="flex justify-center">
+                <motion.div
+                  animate={{}}
+                  transition={{}}
+                  className="
+                    relative
+                    w-64
+                    rounded-2xl
+                    overflow-hidden
+                    border-2 border-[#2d2d2d]
+                    m-10
+                    shadow-xl
+                  ">
+                  <div className="relative w-64 h-64 overflow-hidden">
+                    <Image
+                      src="/photo.jpg"
+                      alt="Pranjal Yadav"
+                      fill
+                      className="object-cover"
+                      priority
+                    />
+
+                    <div className="absolute bottom-0 left-0 w-full">
+                      <NowPlaying />
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            )}
+
+            {/* Primary role in a "terminal" style line */}
+            <motion.div
+              variants={itemVariants}
+              className="mb-5 hero-stagger flex items-center justify-center lg:justify-start text-base md:text-lg font-mono text-[#e5e5e5]">
+              <span className="mr-2 text-sky-400">$</span>
+              <span className="opacity-80">I'm a</span>
+              <span className="ml-2 px-3 py-1 rounded-md bg-[#0b1120] border border-[#1f2937] text-sky-300 shadow-[0_0_10px_rgba(15,23,42,0.65)]">
+                Developer
+              </span>
+            </motion.div>
+
+            <motion.div
+              variants={itemVariants}
+              className="relative mb-8 hero-stagger">
+              <div className="flex items-center justify-center lg:justify-start gap-3 mb-3 text-[#c0c0c0]">
+                <span className="text-xs md:text-sm uppercase tracking-[0.18em] text-[#9ca3af]">
+                  Also a
+                </span>
+              </div>
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+                {[
+                  {
+                    label: "Guitarist",
+                    emoji: "🎸",
+                  },
+                  {
+                    label: "Music Enthusiast",
+                    emoji: "🎧",
+                  },
+                  {
+                    label: "Sketcher",
+                    emoji: "✏️",
+                  },
+                  {
+                    label: "Someone Who Enjoys Philosophy",
+                    emoji: "🧠",
+                  },
+                ].map((item, idx) => (
+                  <motion.button
+                    type="button"
+                    key={idx}
+                    whileHover={{ scale: 1.08 }}
+                    whileTap={{ scale: 0.96 }}
+                    transition={{ duration: 0.2 }}
+                    className="group relative inline-flex flex-col items-start gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-medium border border-[#1f2937] bg-[#111827] text-[#e5e7eb] shadow-[0_0_0_0_rgba(56,189,248,0)] hover:shadow-[0_0_18px_0_rgba(56,189,248,0.55)] cursor-pointer hover:border-sky-500/80 hover:bg-[#0f172a] transition-all duration-200 z-10">
+                    <div className="flex items-center gap-2 whitespace-nowrap">
+                      <span className="text-base md:text-lg">{item.emoji}</span>
+                      <span>{item.label}</span>
+                    </div>
+                    <div className="max-h-0 overflow-hidden group-hover:max-h-32 transition-all duration-300 ease-in-out">
+                      <div className="pt-2 border-t border-[#1f2937]">
+                        <p className="text-[10px] md:text-xs text-[#9ca3af] leading-relaxed max-w-[280px] text-left">
+                          {traitDescriptions[item.label]}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* <motion.div variants={itemVariants} className="relative mb-8">
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-2xl md:text-3xl font-bold">
                 <span className="text-[#c0c0c0]">I'm a</span>
-                {/* Simplified text animation for mobile */}
                 <div className="h-10 overflow-hidden">
                   <motion.div
                     animate={{
@@ -161,16 +262,16 @@ export default function Hero() {
                   </motion.div>
                 </div>
               </div>
-            </motion.div>
+            </motion.div> */}
 
             <motion.p
               variants={itemVariants}
-              className="text-xl md:text-2xl text-[#c0c0c0] mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+              className="text-lg md:text-xl text-[#9ca3af] mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
               Turning innovative ideas into{" "}
-              <span className="font-semibold text-[#f0f0f0]">
+              <span className="font-semibold text-[#e5e7eb]">
                 impactful solutions
               </span>{" "}
-              through code and creativity.
+              through a semiconductor.
             </motion.p>
 
             <motion.div
@@ -178,7 +279,7 @@ export default function Hero() {
               className="flex flex-wrap justify-center lg:justify-start gap-4 mb-10">
               <motion.a
                 href="#projects"
-                className="px-8 py-4 bg-gradient-to-r from-[#9d4edd] to-[#ff5e8f] text-white rounded-lg shadow-lg transition-all"
+                className="px-8 py-4 bg-sky-600 hover:bg-sky-500 text-white rounded-lg shadow-lg transition-all"
                 whileHover={
                   !isMobile
                     ? {
@@ -195,7 +296,7 @@ export default function Hero() {
               </motion.a>
               <motion.a
                 href="#contact"
-                className="px-8 py-4 bg-[#1a1a1a] border border-[#9d4edd]/50 text-[#f0f0f0] rounded-lg shadow-lg transition-all"
+                className="px-8 py-4 bg-[#020617] border border-[#1f2937] text-[#e5e7eb] rounded-lg shadow-lg transition-all"
                 whileHover={
                   !isMobile
                     ? {
@@ -219,22 +320,22 @@ export default function Hero() {
                     href: "https://github.com/pranjal-yadav05",
                     icon: Github,
                     label: "GitHub",
-                    color: "bg-[#1a1a1a] hover:bg-[#2a2a2a]",
-                    shadowColor: "rgba(26, 26, 26, 0.4)",
+                    color: "bg-[#020617] hover:bg-[#020617]/90",
+                    shadowColor: "rgba(15, 23, 42, 0.6)",
                   },
                   {
                     href: "https://www.linkedin.com/in/pranjalyadavhere/",
                     icon: Linkedin,
                     label: "LinkedIn",
-                    color: "bg-[#9d4edd] hover:bg-[#8a3dcb]",
-                    shadowColor: "rgba(157, 78, 221, 0.4)",
+                    color: "bg-[#020617] hover:bg-[#020617]/90",
+                    shadowColor: "rgba(15, 23, 42, 0.6)",
                   },
                   {
                     href: "https://twitter.com/PranjalYad69290",
                     icon: Twitter,
                     label: "Twitter",
-                    color: "bg-[#00d4ff] hover:bg-[#00bfff]",
-                    shadowColor: "rgba(0, 212, 255, 0.4)",
+                    color: "bg-[#020617] hover:bg-[#020617]/90",
+                    shadowColor: "rgba(15, 23, 42, 0.6)",
                   },
                 ].map(
                   ({ href, icon: Icon, label, color, shadowColor }, index) => (
@@ -300,8 +401,8 @@ export default function Hero() {
                       y1="0%"
                       x2="100%"
                       y2="100%">
-                      <stop offset="0%" stopColor="#9d4edd" />
-                      <stop offset="100%" stopColor="#ff5e8f" />
+                      <stop offset="0%" stopColor="#38bdf8" />
+                      <stop offset="100%" stopColor="#34d399" />
                     </linearGradient>
                   </defs>
                 </svg>
@@ -313,9 +414,9 @@ export default function Hero() {
               <motion.div
                 animate={{
                   boxShadow: [
-                    "0 0 25px 8px rgba(157, 78, 221, 0.3)",
-                    "0 0 35px 12px rgba(255, 94, 143, 0.3)",
-                    "0 0 25px 8px rgba(157, 78, 221, 0.3)",
+                    "0 0 25px 8px rgba(56, 189, 248, 0.35)",
+                    "0 0 35px 12px rgba(52, 211, 153, 0.35)",
+                    "0 0 25px 8px rgba(56, 189, 248, 0.35)",
                   ],
                 }}
                 transition={{
@@ -328,31 +429,38 @@ export default function Hero() {
             )}
 
             {/* Simplified floating animation for mobile */}
-            <motion.div
-              animate={
-                !isMobile
-                  ? {
-                      y: [0, -10, 0],
-                    }
-                  : {}
-              }
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                repeatType: "reverse",
-              }}
-              className="relative rounded-2xl overflow-hidden border-2 border-[#2d2d2d] shadow-xl">
-              <div className="w-64 h-64 md:w-80 md:h-80 overflow-hidden">
-                <Image
-                  src="/photo.jpg"
-                  alt="Pranjal Yadav"
-                  width={320}
-                  height={320}
-                  className="object-cover h-full w-full"
-                  priority
-                />
-              </div>
-            </motion.div>
+            {!isMobile && (
+              <motion.div
+                animate={
+                  !isMobile
+                    ? {
+                        y: [0, -10, 0],
+                      }
+                    : {}
+                }
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  repeatType: "reverse",
+                }}
+                className="relative rounded-2xl overflow-hidden border-2 border-[#2d2d2d] shadow-xl">
+                {/* Image */}
+                <div className="relative w-64 h-64 md:w-80 md:h-80 overflow-hidden">
+                  <Image
+                    src="/photo.jpg"
+                    alt="Pranjal Yadav"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+
+                  {/* Now Playing — pinned to bottom */}
+                  <div className="absolute bottom-0 left-0 w-full">
+                    <NowPlaying />
+                  </div>
+                </div>
+              </motion.div>
+            )}
           </motion.div>
         </motion.div>
       </div>

@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.className} transition-colors duration-300 bg-[#121212] text-white`}>
         <ThemeProvider>
-          <Header />
+          {/* <Header /> */}
           {children}
         </ThemeProvider>
       </body>

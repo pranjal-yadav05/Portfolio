@@ -49,7 +49,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 bg-[#121212] relative overflow-hidden">
+      className="min-h-screen py-20 bg-[#121212] relative overflow-hidden flex items-center">
       <motion.div
         ref={ref}
         initial={{ opacity: 0 }}
@@ -58,7 +58,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* Left Pane - Contact Info */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#f0f0f0]">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6 text-[#f0f0f0]">
               Get In Touch
             </h2>
             <p className="text-[#c0c0c0] mb-8">

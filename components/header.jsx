@@ -75,15 +75,15 @@ export default function Header() {
           : "bg-transparent"
       }`}>
       <div className="container mx-auto flex justify-between items-center">
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
           className="flex items-center">
-          <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#9d4edd] to-[#ff5e8f]">
+        <h3 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-emerald-300">
             Pranjal Yadav
           </h3>
-        </motion.div>
+        </motion.div> */}
 
         <nav className="hidden md:flex items-center space-x-1">
           <ul className="flex">
@@ -109,7 +109,7 @@ export default function Header() {
                   }}
                   className="relative px-4 py-2 text-[#f0f0f0] hover:text-[#9d4edd] transition-colors rounded-md group">
                   {link.label}
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#9d4edd] to-[#ff5e8f] scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-sky-400 to-emerald-300 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
                 </a>
               </motion.li>
             ))}

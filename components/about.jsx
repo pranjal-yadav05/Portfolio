@@ -29,7 +29,9 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-20 bg-[#1a1a1a] relative">
+    <section
+      id="about"
+      className="min-h-screen py-20 bg-[#1a1a1a] relative flex items-center">
       {/* Background decorations */}
       <motion.div
         initial={{ opacity: 0.1 }}
@@ -66,11 +68,10 @@ export default function About() {
         animate={inView ? "visible" : "hidden"}
         className="container mx-auto px-4 relative z-10">
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 inline-block relative text-[#f0f0f0]">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#9d4edd] to-[#ff5e8f]">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-4 text-[#f0f0f0]">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-emerald-300">
               About Me
             </span>
-            <span className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#9d4edd] to-[#ff5e8f] rounded-full"></span>
           </h2>
           <p className="text-[#c0c0c0] max-w-2xl mx-auto">
             Get to know more about me, my background, and what drives my passion
@@ -171,35 +172,12 @@ export default function About() {
                 <div className="flex justify-center">
                   <motion.button
                     onClick={toggleExpanded}
-                    className="mt-6 px-6 py-2 bg-gradient-to-r from-[#9d4edd] to-[#ff5e8f] text-white rounded-full hover:shadow-lg transition-all"
+                    className="mt-6 px-6 py-2 bg-gradient-to-r from-sky-500 to-emerald-400 text-white rounded-full hover:shadow-lg transition-all"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}>
                     {expanded ? "View Less" : "Know More"}
                   </motion.button>
                 </div>
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 w-full">
-                {[
-                  { icon: Code, label: "Programmer", color: "#9d4edd" },
-                  { icon: Lightbulb, label: "Innovator", color: "#ff5e8f" },
-                  { icon: GraduationCap, label: "Student", color: "#00d4ff" },
-                  { icon: Rocket, label: "Explorer", color: "#9d4edd" },
-                ].map(({ icon: Icon, label, color }, idx) => (
-                  <motion.div
-                    key={idx}
-                    variants={itemVariants}
-                    className="bg-[#2d2d2d] p-4 rounded-lg shadow-md text-center"
-                    whileHover={{ y: -5, transition: { duration: 0.2 } }}>
-                    <motion.div
-                      whileHover={{ rotate: 5 }}
-                      className="w-12 h-12 flex items-center justify-center mx-auto mb-3 rounded-full"
-                      style={{ backgroundColor: `${color}20` }}>
-                      <Icon size={24} style={{ color: color }} />
-                    </motion.div>
-                    <h4 className="font-medium text-[#f0f0f0]">{label}</h4>
-                  </motion.div>
-                ))}
               </div>
             </motion.div>
           </div>
