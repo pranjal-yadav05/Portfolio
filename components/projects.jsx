@@ -1,9 +1,15 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import { Github, ExternalLink, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
@@ -42,30 +48,57 @@ const projects = [
 ];
 
 export default function Projects() {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const cardsRef = useRef(null);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
+  useGSAP(() => {
+    // Header entrance
+    if (headerRef.current) {
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: headerRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
+    // Projects cards entrance
+    if (cardsRef.current) {
+      const cards = cardsRef.current.querySelectorAll('.project-card');
+      gsap.fromTo(
+        cards,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.15,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: cardsRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+  }, { scope: sectionRef });
 
   return (
     <section
+      ref={sectionRef}
       id="projects"
-      className="min-h-screen py-20 bg-[#1a1a1a] relative overflow-hidden flex items-center">
+      className="stack-section stack-section-4 min-h-screen py-20 bg-[#1a1a1a] relative overflow-hidden flex items-center">
       {/* Background Decorations */}
       <div className="absolute inset-0 -z-10 opacity-30 pointer-events-none">
         <motion.div
@@ -95,31 +128,27 @@ export default function Projects() {
         />
       </div>
 
-      <motion.div
-        ref={ref}
-        variants={containerVariants}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        className="container mx-auto px-4 relative z-10">
-        <motion.div
-          variants={itemVariants}
+      <div className="container mx-auto px-4 relative z-10">
+        <div
+          ref={headerRef}
           className="mb-10 md:mb-14 text-center">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-3 text-white">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-emerald-300">
-              Selected Projects
+              Projects
             </span>
           </h2>
           <p className="text-[#c0c0c0] max-w-2xl mx-auto text-sm md:text-base mt-4">
             Some things I’ve built (and broken) along the way
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+        <div 
+          ref={cardsRef}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {projects.map((project, index) => (
-            <motion.div
+            <div
               key={project.id}
-              variants={itemVariants}
-              className="bg-[#2d2d2d] rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300">
+              className="project-card bg-[#2d2d2d] rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 relative">
               {/* Project Image */}
               <div
                 onClick={() => window.open(project.demo, "_blank")}
@@ -204,13 +233,15 @@ export default function Projects() {
                 transition={{ duration: 0.3 }}
                 className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#9d4edd] to-[#ff5e8f]"
               />
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* View More Button */}
-        <motion.div variants={itemVariants} className="mt-12 text-center">
-          <a
+        <div className="mt-12 text-center">
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             href="https://github.com/pranjal-yadav05"
             target="_blank"
             rel="noopener noreferrer"
@@ -220,9 +251,10 @@ export default function Projects() {
               size={16}
               className="ml-2 transform group-hover:translate-x-1 transition-transform"
             />
-          </a>
-        </motion.div>
-      </motion.div>
+          </motion.a>
+        </div>
+      </div>
     </section>
   );
 }
+

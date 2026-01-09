@@ -15,7 +15,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="py-10 bg-[#0a0a0a] text-white relative overflow-hidden">
+    <footer className="stack-section stack-section-7 py-10 bg-[#0a0a0a] text-white relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 -z-10 opacity-10 pointer-events-none">
         <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black to-transparent" />

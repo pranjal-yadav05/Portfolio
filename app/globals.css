@@ -109,3 +109,30 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #7c3aed;
 }
+
+/* Stacking Sections Effect */
+.stack-section {
+  position: sticky;
+  top: 0;
+  will-change: transform;
+}
+
+/* Z-index layers for stacking effect - higher sections overlap lower ones */
+.stack-section-1 { z-index: 1; }
+.stack-section-2 { z-index: 2; }
+.stack-section-3 { z-index: 3; }
+.stack-section-4 { z-index: 4; }
+.stack-section-5 { z-index: 5; }
+.stack-section-6 { z-index: 6; }
+.stack-section-7 { z-index: 7; }
+
+/* Add subtle shadow for depth on stacking sections */
+.stack-section-2,
+.stack-section-3,
+.stack-section-4,
+.stack-section-5,
+.stack-section-6,
+.stack-section-7 {
+  box-shadow: 0 -20px 60px -15px rgba(0, 0, 0, 0.5);
+}
+

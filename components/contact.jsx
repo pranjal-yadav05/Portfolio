@@ -1,7 +1,7 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
 import {
   Linkedin,
   Instagram,
@@ -12,12 +12,16 @@ import {
   MapPin,
 } from "lucide-react";
 import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const sectionRef = useRef(null);
+  const contentRef = useRef(null);
 
   const socialLinks = [
     {
@@ -46,14 +50,34 @@ export default function Contact() {
     },
   ];
 
+  useGSAP(() => {
+    // Entrance animation
+    if (contentRef.current) {
+      gsap.fromTo(
+        contentRef.current,
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: contentRef.current,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+    }
+  }, { scope: sectionRef });
+
   return (
     <section
+      ref={sectionRef}
       id="contact"
-      className="min-h-screen py-20 bg-[#121212] relative overflow-hidden flex items-center">
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1, transition: { duration: 0.6 } } : {}}
+      className="stack-section stack-section-6 min-h-screen py-20 bg-[#121212] relative overflow-hidden flex items-center">
+      <div
+        ref={contentRef}
         className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* Left Pane - Contact Info */}
@@ -120,10 +144,7 @@ export default function Contact() {
           </div>
 
           {/* Right Pane - GIF */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1, transition: { duration: 0.8 } }}
-            className="flex justify-center">
+          <div className="flex justify-center">
             <Image
               src="/contact-me.gif" // Replace with your actual GIF path
               alt="Animated Preview"
@@ -131,9 +152,10 @@ export default function Contact() {
               height={500}
               className="rounded-xl shadow-lg"
             />
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
+

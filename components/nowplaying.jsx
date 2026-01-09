@@ -54,7 +54,7 @@ export default function NowPlaying() {
 
       <div className="flex flex-col text-sm overflow-hidden">
         <span className="text-[10px] uppercase tracking-wider text-[#9ca3af]">
-          Listening to
+        Currently Listening to
         </span>
         <span className="text-sky-300 font-medium truncate">{track.title}</span>
         <span className="text-xs text-[#9ca3af] truncate">

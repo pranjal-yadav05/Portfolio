@@ -2,14 +2,33 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Twitter, Code, Zap } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Twitter, Code, Zap, ChevronDown } from "lucide-react";
 import NowPlaying from "./nowplaying";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const [isMobile, setIsMobile] = useState(false);
+  const [activeInterest, setActiveInterest] = useState(null);
   const router = useRouter();
+  
+  // Refs for GSAP animations
+  const heroRef = useRef(null);
+  const headingRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const roleRef = useRef(null);
+  const interestsRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const buttonsRef = useRef(null);
+  const socialsRef = useRef(null);
+  const imageRef = useRef(null);
+
   // Detect mobile devices
   useEffect(() => {
     const checkMobile = () => {
@@ -21,6 +40,102 @@ export default function Hero() {
 
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  // GSAP scroll animations
+  useGSAP(() => {
+    const elements = [
+      subtitleRef.current,
+      headingRef.current,
+      roleRef.current,
+      interestsRef.current,
+      descriptionRef.current,
+      buttonsRef.current,
+      socialsRef.current,
+    ].filter(Boolean);
+
+    // Initial stagger animation on load
+    gsap.fromTo(
+      elements,
+      {
+        opacity: 0,
+        y: isMobile ? 30 : 60,
+        scale: 0.95,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: isMobile ? 0.6 : 0.8,
+        stagger: isMobile ? 0.1 : 0.15,
+        ease: "power3.out",
+        delay: 0.3,
+      }
+    );
+
+    // Image reveal animation
+    if (imageRef.current) {
+      gsap.fromTo(
+        imageRef.current,
+        {
+          opacity: 0,
+          scale: 0.8,
+          rotateY: -15,
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          rotateY: 0,
+          duration: 1,
+          ease: "power3.out",
+          delay: 0.5,
+        }
+      );
+    }
+
+    // Parallax effect on scroll (desktop only)
+    if (!isMobile && heroRef.current) {
+      gsap.to(heroRef.current.querySelector('.hero-content'), {
+        yPercent: 30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+
+      // Fade out hero on scroll
+      gsap.to(heroRef.current, {
+        opacity: 0.3,
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "center top",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+    }
+
+    // Interest boxes stagger animation on hover area
+    const interestBoxes = interestsRef.current?.querySelectorAll('.interest-box');
+    if (interestBoxes?.length) {
+      interestBoxes.forEach((box, index) => {
+        gsap.fromTo(
+          box,
+          { opacity: 0, x: -20, rotateZ: -2 },
+          {
+            opacity: 1,
+            x: 0,
+            rotateZ: 0,
+            duration: 0.5,
+            delay: 0.8 + index * 0.1,
+            ease: "back.out(1.7)",
+          }
+        );
+      });
+    }
+  }, { scope: heroRef, dependencies: [isMobile] });
 
   // Animation variants for staggered animations - simplified for mobile
   const containerVariants = {
@@ -45,9 +160,9 @@ export default function Hero() {
 
   const traitDescriptions = {
     Guitarist:
-      "I can comfortably play open chords and barre chords, and I’m currently learning finger-style to add more dynamics and melody to my playing.",
+      "I can comfortably play open chords and barre chords, and I'm currently learning finger-style to add more dynamics and melody to my playing.",
     "Music Enthusiast":
-      "I enjoy discovering different kinds of music—from alternative rock (currently obsessed with Arctic Monkeys) to hip-hop (Kanye West), R&B (The Weeknd, Michael Jackson), and even tracks I can’t quite label but still love.",
+      "I enjoy discovering different kinds of music—from alternative rock (currently obsessed with Arctic Monkeys) to hip-hop (Kanye West), R&B (The Weeknd, Michael Jackson), and even tracks I can't quite label but still love.",
     Sketcher:
       "I enjoy sketching characters and scenes in my free time—it helps me think visually and translate ideas into shapes, lines, and stories.",
     "Someone Who Enjoys Philosophy":
@@ -56,8 +171,9 @@ export default function Hero() {
 
   return (
     <section
+      ref={heroRef}
       id="home"
-      className="min-h-screen flex flex-col items-center justify-center py-16 relative overflow-hidden">
+      className="stack-section stack-section-1 min-h-screen flex flex-col items-center justify-center py-16 relative overflow-hidden">
       {/* Gradient background with animated noise texture */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-[#0a0a0a] to-[#121212]" />
 
@@ -117,28 +233,28 @@ export default function Hero() {
         <div className="absolute inset-0 -z-5 bg-gradient-radial from-[#9d4edd]/5 via-transparent to-transparent opacity-50" />
       )}
 
-      <div className="container mx-auto px-4 flex items-center justify-center w-full">
+      <div className="container mx-auto px-4 flex items-center justify-center w-full hero-content">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 w-full max-w-6xl">
           <div className="flex-1 text-center lg:text-left">
-            <motion.div variants={itemVariants}>
+            <div ref={subtitleRef}>
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-4 text-sm md:text-base text-[#9ca3af]">
                 <div className="h-px w-8 bg-gradient-to-r from-sky-500/60 to-sky-400/20 rounded-full" />
                 <span className="uppercase tracking-[0.18em]">Hello, I'm</span>
                 <div className="h-px w-8 bg-gradient-to-r from-sky-400/20 to-sky-500/60 rounded-full" />
               </div>
-            </motion.div>
+            </div>
 
-            <motion.h1
-              variants={itemVariants}
+            <h1
+              ref={headingRef}
               className="text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 text-[#f9fafb] tracking-tight">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#f9fafb] to-[#d1d5db]">
                 Pranjal Yadav
               </span>
-            </motion.h1>
+            </h1>
 
             {isMobile && (
               <div className="flex justify-center">
@@ -172,18 +288,18 @@ export default function Hero() {
             )}
 
             {/* Primary role in a "terminal" style line */}
-            <motion.div
-              variants={itemVariants}
+            <div
+              ref={roleRef}
               className="mb-5 hero-stagger flex items-center justify-center lg:justify-start text-base md:text-lg font-mono text-[#e5e5e5]">
               <span className="mr-2 text-sky-400">$</span>
               <span className="opacity-80">I'm a</span>
               <span className="ml-2 px-3 py-1 rounded-md bg-[#0b1120] border border-[#1f2937] text-sky-300 shadow-[0_0_10px_rgba(15,23,42,0.65)]">
                 Developer
               </span>
-            </motion.div>
+            </div>
 
-            <motion.div
-              variants={itemVariants}
+            <div
+              ref={interestsRef}
               className="relative mb-8 hero-stagger">
               <div className="flex items-center justify-center lg:justify-start gap-3 mb-3 text-[#c0c0c0]">
                 <span className="text-xs md:text-sm uppercase tracking-[0.18em] text-[#9ca3af]">
@@ -212,15 +328,30 @@ export default function Hero() {
                   <motion.button
                     type="button"
                     key={idx}
+                    onClick={() => {
+                      if (isMobile) {
+                        setActiveInterest(activeInterest === idx ? null : idx);
+                      }
+                    }}
                     whileHover={{ scale: 1.08 }}
                     whileTap={{ scale: 0.96 }}
                     transition={{ duration: 0.2 }}
-                    className="group relative inline-flex flex-col items-start gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-medium border border-[#1f2937] bg-[#111827] text-[#e5e7eb] shadow-[0_0_0_0_rgba(56,189,248,0)] hover:shadow-[0_0_18px_0_rgba(56,189,248,0.55)] cursor-pointer hover:border-sky-500/80 hover:bg-[#0f172a] transition-all duration-200 z-10">
-                    <div className="flex items-center gap-2 whitespace-nowrap">
-                      <span className="text-base md:text-lg">{item.emoji}</span>
-                      <span>{item.label}</span>
+                    className={`interest-box group relative inline-flex flex-col items-start gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-medium border border-[#1f2937] bg-[#111827] text-[#e5e7eb] shadow-[0_0_0_0_rgba(56,189,248,0)] hover:shadow-[0_0_18px_0_rgba(56,189,248,0.55)] cursor-pointer hover:border-sky-500/80 hover:bg-[#0f172a] transition-all duration-200 z-10 ${activeInterest === idx ? 'border-sky-500/80 bg-[#0f172a] shadow-[0_0_18px_0_rgba(56,189,248,0.55)]' : ''}`}>
+                    <div className="flex items-center justify-between gap-2 w-full">
+                      <div className="flex items-center gap-2 whitespace-nowrap">
+                        <span className="text-base md:text-lg">{item.emoji}</span>
+                        <span>{item.label}</span>
+                      </div>
+                      <ChevronDown 
+                        size={14} 
+                        className={`text-sky-400/70 transition-transform duration-300 ${
+                          isMobile 
+                            ? (activeInterest === idx ? 'rotate-180' : 'rotate-0') 
+                            : 'group-hover:rotate-180'
+                        }`} 
+                      />
                     </div>
-                    <div className="max-h-0 overflow-hidden group-hover:max-h-32 transition-all duration-300 ease-in-out">
+                    <div className={`max-h-0 overflow-hidden transition-all duration-300 ease-in-out ${isMobile ? (activeInterest === idx ? 'max-h-32' : 'max-h-0') : 'group-hover:max-h-32'}`}>
                       <div className="pt-2 border-t border-[#1f2937]">
                         <p className="text-[10px] md:text-xs text-[#9ca3af] leading-relaxed max-w-[280px] text-left">
                           {traitDescriptions[item.label]}
@@ -230,7 +361,7 @@ export default function Hero() {
                   </motion.button>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* <motion.div variants={itemVariants} className="relative mb-8">
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-2xl md:text-3xl font-bold">
@@ -264,18 +395,18 @@ export default function Hero() {
               </div>
             </motion.div> */}
 
-            <motion.p
-              variants={itemVariants}
+            <p
+              ref={descriptionRef}
               className="text-lg md:text-xl text-[#9ca3af] mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
               Turning innovative ideas into{" "}
               <span className="font-semibold text-[#e5e7eb]">
                 impactful solutions
               </span>{" "}
               through a semiconductor.
-            </motion.p>
+            </p>
 
-            <motion.div
-              variants={itemVariants}
+            <div
+              ref={buttonsRef}
               className="flex flex-wrap justify-center lg:justify-start gap-4 mb-10">
               <motion.a
                 href="#projects"
@@ -311,9 +442,9 @@ export default function Hero() {
                   <span>Connect With Me</span>
                 </span>
               </motion.a>
-            </motion.div>
+            </div>
 
-            <motion.div variants={itemVariants}>
+            <div ref={socialsRef}>
               <div className="flex justify-center lg:justify-start space-x-5">
                 {[
                   {
@@ -360,7 +491,7 @@ export default function Hero() {
                   )
                 )}
               </div>
-            </motion.div>
+            </div>
           </div>
 
           <motion.div
@@ -431,6 +562,7 @@ export default function Hero() {
             {/* Simplified floating animation for mobile */}
             {!isMobile && (
               <motion.div
+                ref={imageRef}
                 animate={
                   !isMobile
                     ? {
