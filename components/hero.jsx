@@ -242,16 +242,16 @@ export default function Hero() {
           <div className="flex-1 text-center lg:text-left">
             <div ref={subtitleRef}>
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-4 text-sm md:text-base text-[#9ca3af]">
-                <div className="h-px w-8 bg-gradient-to-r from-sky-500/60 to-sky-400/20 rounded-full" />
-                <span className="uppercase tracking-[0.18em]">Hello, I'm</span>
-                <div className="h-px w-8 bg-gradient-to-r from-sky-400/20 to-sky-500/60 rounded-full" />
+                <div className="h-px w-8 bg-sky-500/50 rounded-full" />
+                <span className="uppercase tracking-[0.18em] text-white/70">Hello, I'm</span>
+                <div className="h-px w-8 bg-sky-500/50 rounded-full" />
               </div>
             </div>
 
             <h1
               ref={headingRef}
-              className="text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 text-[#f9fafb] tracking-tight">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#f9fafb] to-[#d1d5db]">
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white tracking-tighter">
+              <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-white/40">
                 Pranjal Yadav
               </span>
             </h1>

@@ -65,7 +65,7 @@ export default function About() {
     <section
       ref={sectionRef}
       id="about"
-      className="stack-section stack-section-5 min-h-screen py-20 bg-[#1a1a1a] relative flex items-center">
+      className="stack-section stack-section-5 min-h-screen py-24 bg-[#0a0a0b] border-y border-[#232323] relative flex items-center">
       {/* Background decorations */}
       <motion.div
         initial={{ opacity: 0.1 }}
@@ -97,12 +97,12 @@ export default function About() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div ref={headerRef} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-4 text-[#f0f0f0]">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-emerald-300">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-4 text-white">
+            <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-white/40">
               About Me
             </span>
           </h2>
-          <p className="text-[#c0c0c0] max-w-2xl mx-auto">
+          <p className="text-[#888] max-w-2xl mx-auto">
             Who the hell am I?
           </p>
         </div>
@@ -143,7 +143,7 @@ export default function About() {
             <div
               ref={contentRef}
               className="lg:col-span-3 w-full">
-              <div className="bg-[#2d2d2d] rounded-xl shadow-lg p-8 w-full">
+              <div className="bg-[#151518]/80 backdrop-blur-sm rounded-2xl border border-white/10 shadow-lg p-8 w-full">
                 <h3 className="text-2xl font-bold mb-4 text-[#f0f0f0]">
                   Hi there! 👋 I'm Pranjal
                 </h3>

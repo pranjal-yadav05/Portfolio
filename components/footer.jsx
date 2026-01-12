@@ -15,7 +15,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="stack-section stack-section-7 py-10 bg-[#0a0a0a] text-white relative overflow-hidden">
+    <footer className="stack-section stack-section-7 py-16 bg-[#050505] text-white border-t border-white/5 relative overflow-hidden">
       {/* Background decorations */}
       <div className="absolute inset-0 -z-10 opacity-10 pointer-events-none">
         <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black to-transparent" />
@@ -24,10 +24,10 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
-          <h2 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-emerald-300">
+          <h2 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-white/40">
               Pranjal Yadav
             </h2>
-            <p className="text-gray-400 mb-4 max-w-md">
+            <p className="text-[#888] mb-4 max-w-md">
               Who the hell reads a footer?
             </p>
             {/* Social Links */}

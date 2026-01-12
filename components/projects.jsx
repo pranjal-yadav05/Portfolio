@@ -98,7 +98,7 @@ export default function Projects() {
     <section
       ref={sectionRef}
       id="projects"
-      className="stack-section stack-section-4 min-h-screen py-20 bg-[#1a1a1a] relative overflow-hidden flex items-center">
+      className="stack-section stack-section-4 min-h-screen py-24 bg-[#0a0a0b] border-y border-[#232323] relative overflow-hidden flex items-center">
       {/* Background Decorations */}
       <div className="absolute inset-0 -z-10 opacity-30 pointer-events-none">
         <motion.div
@@ -132,12 +132,12 @@ export default function Projects() {
         <div
           ref={headerRef}
           className="mb-10 md:mb-14 text-center">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-3 text-white">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-emerald-300">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-3 text-white">
+            <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-white/40">
               Projects
             </span>
           </h2>
-          <p className="text-[#c0c0c0] max-w-2xl mx-auto text-sm md:text-base mt-4">
+          <p className="text-[#888] max-w-2xl mx-auto text-sm md:text-base mt-4">
             Some things I’ve built (and broken) along the way
           </p>
         </div>
@@ -148,7 +148,7 @@ export default function Projects() {
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className="project-card bg-[#2d2d2d] rounded-xl shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 relative">
+              className="project-card bg-[#151518]/80 backdrop-blur-sm rounded-2xl border border-white/10 shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 relative">
               {/* Project Image */}
               <div
                 onClick={() => window.open(project.demo, "_blank")}

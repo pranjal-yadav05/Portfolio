@@ -112,7 +112,7 @@ export default function Experience() {
     <section
       ref={sectionRef}
       id="experience"
-      className="stack-section stack-section-2 min-h-screen py-20 bg-[#0f0f10] border-y border-[#232323] relative flex items-center">
+      className="stack-section stack-section-2 min-h-screen py-24 bg-[#0a0a0b] border-y border-[#232323] relative flex items-center">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#9d4edd]/40 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#ff5e8f]/30 to-transparent" />
@@ -122,12 +122,12 @@ export default function Experience() {
         <div
           ref={headerRef}
           className="mb-10 md:mb-14 text-center">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-3 text-[#f0f0f0]">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-emerald-300">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-3 text-white">
+            <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-white/40">
               Work Experience
             </span>
           </h2>
-          <p className="text-[#c0c0c0] max-w-2xl mx-auto text-sm md:text-base mt-4">
+          <p className="text-[#888] max-w-2xl mx-auto text-sm md:text-base mt-4">
             A quick look at where I&apos;m applying my skills in a real-world
             engineering team.
           </p>
@@ -142,7 +142,7 @@ export default function Experience() {
 
           <div 
             ref={cardRef}
-            className="bg-[#151515] border border-[#272727] rounded-2xl p-5 md:p-6 lg:p-7 shadow-[0_18px_40px_rgba(0,0,0,0.55)] flex flex-col gap-5"
+            className="bg-[#151518]/80 backdrop-blur-sm border border-white/10 rounded-2xl p-5 md:p-6 lg:p-7 shadow-[0_18px_40px_rgba(0,0,0,0.55)] flex flex-col gap-5"
             style={{ perspective: "1000px" }}>
             <div className="exp-animate flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex items-center gap-4">

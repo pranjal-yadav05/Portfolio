@@ -75,17 +75,19 @@ export default function Contact() {
     <section
       ref={sectionRef}
       id="contact"
-      className="stack-section stack-section-6 min-h-screen py-20 bg-[#121212] relative overflow-hidden flex items-center">
+      className="stack-section stack-section-contact min-h-screen py-24 bg-[#0a0a0b] border-y border-[#232323] relative overflow-hidden flex items-center">
       <div
         ref={contentRef}
         className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* Left Pane - Contact Info */}
           <div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6 text-[#f0f0f0]">
-              Get In Touch
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-6 text-white">
+              <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-white/40">
+                Get In Touch
+              </span>
             </h2>
-            <p className="text-[#c0c0c0] mb-8">
+            <p className="text-[#888] mb-8">
               Feel free to reach out - for collaborations, opportunities, or
               accidental deep conversations
             </p>
