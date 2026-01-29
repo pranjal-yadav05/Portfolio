@@ -259,8 +259,13 @@ export default function Hero() {
             {isMobile && (
               <div className="flex justify-center">
                 <motion.div
-                  animate={{}}
-                  transition={{}}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.5,
+                    ease: [0.2, 0.8, 0.2, 1],
+                  }}
                   className="
                     relative
                     w-64
@@ -317,13 +322,13 @@ export default function Hero() {
                     emoji: "🎧",
                   },
                   {
-                    label: "Sketcher",
-                    emoji: "✏️",
-                  },
-                  {
                     label: "Someone Who Enjoys Philosophy",
                     emoji: "🧠",
                   },
+                  {
+                    label: "Sketcher",
+                    emoji: "✏️",
+                  }
                 ].map((item, idx) => (
                   <motion.button
                     type="button"

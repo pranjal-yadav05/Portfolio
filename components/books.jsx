@@ -236,7 +236,10 @@ export default function Books() {
         {/* Quote */}
         <div className="mt-24 text-center">
             <p className="text-[#444] text-xs font-mono tracking-widest uppercase">
-              "A room without books is like a body without a soul."
+              "History shows that where ethics and economics come in conflict, victory is always with economics."
+            </p>
+            <p className="text-[#444] text-xs font-mono tracking-widest uppercase">
+              -Dr. B.R. Ambedkar
             </p>
         </div>
 

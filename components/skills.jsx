@@ -130,7 +130,7 @@ export default function Skills() {
             </span>
           </h2>
           <p className="text-[#888] max-w-2xl mx-auto text-lg">
-            Three core ecosystems I weave into every digital experience.
+            Three core ecosystems I love to work with.
           </p>
         </div>
 
