@@ -14,6 +14,19 @@ gsap.registerPlugin(ScrollTrigger);
 const BOOKS = [
   {
     id: 1,
+    title: "Why I am an Atheist",
+    author: "Bhagat Singh",
+    status: "Currently Reading",
+    statusColor: "text-sky-400 border-sky-400/30 bg-sky-400/10",
+    description: "A powerful personal essay by the revolutionary freedom fighter Bhagat Singh, written in 1930 while awaiting execution, challenging religious belief and championing rationalism and humanism.",
+    image: "/book_why_i_am_an_atheist.jpg",
+    spineColor: "#7f1d1d", // Deep red spine
+    spineTextColor: "#fef2f2",
+    height: "h-56",
+    width: "w-5"
+  },
+  {
+    id: 2,
     title: "Samkhya Karika",
     author: "Ishvarakrishna",
     status: "Currently Reading",
@@ -26,11 +39,11 @@ const BOOKS = [
     width: "w-6"
   },
   {
-    id: 2,
+    id: 3,
     title: "1984",
     author: "George Orwell",
-    status: "Currently Reading",
-    statusColor: "text-sky-400 border-sky-400/30 bg-sky-400/10",
+    status: "Read",
+    statusColor: "text-emerald-400 border-emerald-400/30 bg-emerald-400/10",
     description: "A dystopian social science fiction novel and cautionary tale about totalitarianism using surveillance and propaganda to control people.",
     image: "/book_1984.png",
     spineColor: "#2c3e50",
@@ -39,7 +52,7 @@ const BOOKS = [
     width: "w-12"
   },
   {
-    id: 3,
+    id: 4,
     title: "Animal Farm",
     author: "George Orwell",
     status: "Read",
@@ -52,7 +65,7 @@ const BOOKS = [
     width: "w-5"
   },
   {
-    id: 4,
+    id: 5,
     title: "Immortals of Meluha",
     author: "Amish Tripathi",
     status: "Read",
@@ -65,7 +78,7 @@ const BOOKS = [
     width: "w-8"
   },
   {
-    id: 5,
+    id: 6,
     title: "Annihilation of Caste",
     author: "Dr. B.R. Ambedkar",
     status: "Read",
