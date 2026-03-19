@@ -14,9 +14,22 @@ gsap.registerPlugin(ScrollTrigger);
 const BOOKS = [
   {
     id: 1,
+    title: "The Almanack of Naval Ravikant",
+    author: "Eric Jorgenson",
+    status: "Currently Reading",
+    statusColor: "text-amber-400 border-amber-400/30 bg-amber-400/10",
+    description: "A collection of wisdom and insights from entrepreneur and investor Naval Ravikant, covering wealth creation, happiness, decision-making, and living a meaningful life.",
+    image: "/book_almanack_naval_ravikant.jpg",
+    spineColor: "#0f172a",
+    spineTextColor: "#e2e8f0",
+    height: "h-70",
+    width: "w-10"
+  },
+  {
+    id: 2,
     title: "Why I am an Atheist",
     author: "Bhagat Singh",
-    status: "Currently Reading",
+    status: "Read",
     statusColor: "text-sky-400 border-sky-400/30 bg-sky-400/10",
     description: "A powerful personal essay by the revolutionary freedom fighter Bhagat Singh, written in 1930 while awaiting execution, challenging religious belief and championing rationalism and humanism.",
     image: "/book_why_i_am_an_atheist.jpg",
@@ -26,7 +39,7 @@ const BOOKS = [
     width: "w-5"
   },
   {
-    id: 2,
+    id: 3,
     title: "Samkhya Karika",
     author: "Ishvarakrishna",
     status: "Currently Reading",
@@ -39,7 +52,7 @@ const BOOKS = [
     width: "w-6"
   },
   {
-    id: 3,
+    id: 4,
     title: "1984",
     author: "George Orwell",
     status: "Read",
@@ -52,7 +65,7 @@ const BOOKS = [
     width: "w-12"
   },
   {
-    id: 4,
+    id: 5,
     title: "Animal Farm",
     author: "George Orwell",
     status: "Read",
@@ -65,7 +78,7 @@ const BOOKS = [
     width: "w-5"
   },
   {
-    id: 5,
+    id: 6,
     title: "Immortals of Meluha",
     author: "Amish Tripathi",
     status: "Read",
@@ -78,7 +91,7 @@ const BOOKS = [
     width: "w-8"
   },
   {
-    id: 6,
+    id: 7,
     title: "Annihilation of Caste",
     author: "Dr. B.R. Ambedkar",
     status: "Read",
@@ -90,7 +103,6 @@ const BOOKS = [
     height: "h-52",
     width: "w-14"
   },
-  
 ];
 
 export default function Books() {

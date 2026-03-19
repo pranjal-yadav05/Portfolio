@@ -159,8 +159,8 @@ export default function Hero() {
   };
 
   const traitDescriptions = {
-    Guitarist:
-      "I can comfortably play open chords and barre chords, and I'm currently learning finger-style to add more dynamics and melody to my playing.",
+    "Someone Who Loves Guitar":
+      "I've been spending a lot of time learning guitar, Started with chords and now getting into lead playing. Still figuring things out, but I really enjoy the process of understanding melodies and piecing together solos.",
     "Music Enthusiast":
       "I enjoy discovering different kinds of music—from alternative rock (currently obsessed with Arctic Monkeys) to hip-hop (Kanye West), R&B (The Weeknd, Michael Jackson), and even tracks I can't quite label but still love.",
     Sketcher:
@@ -314,7 +314,7 @@ export default function Hero() {
               <div className="flex flex-wrap justify-center lg:justify-start gap-3">
                 {[
                   {
-                    label: "Guitarist",
+                    label: "Someone Who Loves Guitar",
                     emoji: "🎸",
                   },
                   {
