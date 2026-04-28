@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -183,28 +183,37 @@ export default function Experience() {
                 with a strong focus on backend development, training and
                 building a solid foundation in enterprise-level technologies.
               </p>
-              {expanded && (
-                <>
-                  <p>
-                    I am currently training in Java and the Spring ecosystem,
-                    including Spring, Spring Boot, Spring Cloud, and
-                    Microservices architecture, to design and develop scalable
-                    backend systems.
-                  </p>
-                  <p>
-                    As I transition into my internship project, I will be
-                    applying these technologies to real-world use cases, writing
-                    clean and maintainable code, and collaborating within an
-                    agile engineering team.
-                  </p>
-                  <p>
-                    This experience is helping me strengthen my backend
-                    engineering skills, understand large-scale system design,
-                    and grow into a developer capable of delivering reliable and
-                    impactful software solutions.
-                  </p>
-                </>
-              )}
+              <AnimatePresence initial={false}>
+                {expanded && (
+                  <motion.div
+                    key="expanded-content"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.36, ease: "easeOut" }}
+                    className="overflow-hidden"
+                  >
+                    <p>
+                      I am currently training in Java and the Spring ecosystem,
+                      including Spring, Spring Boot, Spring Cloud, and
+                      Microservices architecture, to design and develop scalable
+                      backend systems.
+                    </p>
+                    <p>
+                      As I transition into my internship project, I will be
+                      applying these technologies to real-world use cases, writing
+                      clean and maintainable code, and collaborating within an
+                      agile engineering team.
+                    </p>
+                    <p>
+                      This experience is helping me strengthen my backend
+                      engineering skills, understand large-scale system design,
+                      and grow into a developer capable of delivering reliable and
+                      impactful software solutions.
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <div className="exp-animate flex justify-start">

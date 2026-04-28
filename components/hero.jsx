@@ -277,7 +277,7 @@ export default function Hero() {
                   ">
                   <div className="relative w-64 h-64 overflow-hidden">
                     <Image
-                      src="/photo.jpg"
+                      src="/photo.png"
                       alt="Pranjal Yadav"
                       fill
                       className="object-cover"
@@ -298,7 +298,7 @@ export default function Hero() {
               className="mb-5 hero-stagger flex items-center justify-center lg:justify-start text-base md:text-lg font-mono text-[#e5e5e5]">
               <span className="mr-2 text-sky-400">$</span>
               <span className="opacity-80">I'm a</span>
-              <span className="ml-2 px-3 py-1 rounded-md bg-[#0b1120] border border-[#1f2937] text-sky-300 shadow-[0_0_10px_rgba(15,23,42,0.65)]">
+              <span className="ml-2 px-3 py-1 rounded-md bg-[#0b1120] border border-white/10 text-sky-300 shadow-[0_0_10px_rgba(15,23,42,0.65)]">
                 Developer
               </span>
             </div>
@@ -341,7 +341,7 @@ export default function Hero() {
                     whileHover={{ scale: 1.08 }}
                     whileTap={{ scale: 0.96 }}
                     transition={{ duration: 0.2 }}
-                    className={`interest-box group relative inline-flex flex-col items-start gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-medium border border-[#1f2937] bg-[#111827] text-[#e5e7eb] shadow-[0_0_0_0_rgba(56,189,248,0)] hover:shadow-[0_0_18px_0_rgba(56,189,248,0.55)] cursor-pointer hover:border-sky-500/80 hover:bg-[#0f172a] transition-all duration-200 z-10 ${activeInterest === idx ? 'border-sky-500/80 bg-[#0f172a] shadow-[0_0_18px_0_rgba(56,189,248,0.55)]' : ''}`}>
+                    className={`interest-box group relative inline-flex flex-col items-start gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-medium border border-white/10 bg-white/5 text-white/80 shadow-[0_0_0_0_rgba(56,189,248,0)] hover:bg-white/10 hover:border-white/20 cursor-pointer hover:border-sky-500/80 hover:bg-[#0f172a] transition-all duration-200 z-10 ${activeInterest === idx ? 'border-sky-500/80 bg-[#0f172a] shadow-[0_0_18px_0_rgba(56,189,248,0.55)]' : ''}`}>
                     <div className="flex items-center justify-between gap-2 w-full">
                       <div className="flex items-center gap-2 whitespace-nowrap">
                         <span className="text-base md:text-lg">{item.emoji}</span>
@@ -357,7 +357,7 @@ export default function Hero() {
                       />
                     </div>
                     <div className={`max-h-0 overflow-hidden transition-all duration-300 ease-in-out ${isMobile ? (activeInterest === idx ? 'max-h-32' : 'max-h-0') : 'group-hover:max-h-32'}`}>
-                      <div className="pt-2 border-t border-[#1f2937]">
+                      <div className="pt-2 border-t border-white/10">
                         <p className="text-[10px] md:text-xs text-[#9ca3af] leading-relaxed max-w-[280px] text-left">
                           {traitDescriptions[item.label]}
                         </p>
@@ -432,7 +432,7 @@ export default function Hero() {
               </motion.a>
               <motion.a
                 href="#contact"
-                className="px-8 py-4 bg-[#020617] border border-[#1f2937] text-[#e5e7eb] rounded-lg shadow-lg transition-all"
+                className="px-8 py-4 bg-[#020617] border border-white/10 text-[#e5e7eb] rounded-lg shadow-lg transition-all"
                 whileHover={
                   !isMobile
                     ? {
@@ -584,7 +584,7 @@ export default function Hero() {
                 {/* Image */}
                 <div className="relative w-64 h-64 md:w-80 md:h-80 overflow-hidden">
                   <Image
-                    src="/photo.jpg"
+                    src="/photo.png"
                     alt="Pranjal Yadav"
                     fill
                     className="object-cover"

@@ -22,7 +22,7 @@ export default function NowPlaying() {
   if (!track || !track.isPlaying) {
     return (
       <p className="w-full px-3 py-2 text-xs text-[#9ca3af] bg-[#020617]/70 backdrop-blur-md border-t border-white/10">
-        🎵 Not playing anything right now
+        🎵 Not listening any music right now
       </p>
     );
   }

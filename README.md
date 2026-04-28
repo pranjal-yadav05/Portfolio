@@ -4,16 +4,7 @@ A modern, responsive portfolio website built with Next.js and Tailwind CSS. This
 
 ## 📸 Preview
 
-**Live Demo:** [pranjalyadav.vercel.app](https://pranjalyadav.vercel.app)
-
-![Portfolio Preview 1](/public/p1.png)
-_Main view of the portfolio website_
-
-![Portfolio Preview 2](/public/p2.png)
-_Projects and skills section_
-
-![Portfolio Preview 3](/public/p3.png)
-_Interactive coding section with animations_
+**Live Demo:** [pranjalyadav.vercel.app](https://pranjalyadav.vercel.app)  
 
 ## 🚀 Features
 
