@@ -159,13 +159,13 @@ export default function Hero() {
   };
 
   const traitDescriptions = {
-    "Amateur Guitarist":
-      "I've been spending a lot of time learning guitar, Started with chords and now getting into lead playing. Still figuring things out, but I really enjoy the process of understanding melodies and piecing together solos.",
     "Music Enthusiast":
       "I enjoy discovering different kinds of music—from alternative rock (currently obsessed with Arctic Monkeys) to hip-hop (Kanye West), R&B (The Weeknd, Michael Jackson), and even tracks I can't quite label but still love.",
+    "Amateur Guitarist":
+      "I've been spending a lot of time learning guitar, Started with chords and now getting into lead playing. Still figuring things out, but I really enjoy the process of understanding melodies and piecing together solos.",
     Sketcher:
       "I enjoy sketching characters and scenes in my free time—it helps me think visually and translate ideas into shapes, lines, and stories.",
-    "Someone Who Enjoys Philosophy":
+    "Philosophy Lover":
       "I like reading and reflecting on philosophy, especially around consciousness, meaning, and how we make decisions in a complex world.",
   };
 
@@ -312,17 +312,17 @@ export default function Hero() {
                 </span>
               </div>
               <div className="flex flex-wrap justify-center lg:justify-start gap-3">
-                {[
-                  {
-                    label: "Amateur Guitarist",
-                    emoji: "🎸",
-                  },
+                {[                  
                   {
                     label: "Music Enthusiast",
                     emoji: "🎧",
                   },
                   {
-                    label: "Someone Who Enjoys Philosophy",
+                    label: "Amateur Guitarist",
+                    emoji: "🎸",
+                  },
+                  {
+                    label: "Philosophy Lover",
                     emoji: "🧠",
                   },
                   {

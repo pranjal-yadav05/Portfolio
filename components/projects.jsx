@@ -14,6 +14,17 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
   {
     id: 1,
+    title: "SmartBlog",
+    description:
+      "SmartBlog is an AI-powered blogging platform that enables users to create blog posts effortlessly using the Gemini API, streamlining content generation with intelligent assistance.",
+    image: "/smartblog.png",
+    logo: "/smartblog-logo.png",
+    repo: "https://github.com/pranjal-yadav05/SmartBlog",
+    demo: "https://smart-blog-one.vercel.app",
+    tags: ["Spring Boot", "Next.js", "Gemini"],
+  },
+  {
+    id: 2,
     title: "Uncle Nomad",
     description:
       "A fully functional booking platform for the Uncle Nomad travel community, enabling real users to seamlessly book stays and tours. Integrated a secure payment gateway and built a complete management system for independent operations.",
@@ -24,7 +35,7 @@ const projects = [
     tags: ["MERN", "Razorpay", "Cloudinary"],
   },
   {
-    id: 2,
+    id: 3,
     title: "Lyceum",
     description:
       "A virtual community where students can connect, collaborate, and study together through interactive video rooms, discussion forums, and real-time messaging.",
@@ -33,18 +44,7 @@ const projects = [
     repo: "https://github.com/pranjal-yadav05/Lyceum",
     demo: "https://lyceum.vercel.app",
     tags: ["MERN", "PeerJS", "Web Sockets"],
-  },
-  {
-    id: 3,
-    title: "SmartBlog",
-    description:
-      "SmartBlog is an AI-powered blogging platform that enables users to create blog posts effortlessly using the Gemini API, streamlining content generation with intelligent assistance.",
-    image: "/smartblog.png",
-    logo: "/smartblog-logo.png",
-    repo: "https://github.com/pranjal-yadav05/SmartBlog",
-    demo: "https://smart-blog-one.vercel.app",
-    tags: ["Spring Boot", "Next.js", "Gemini"],
-  },
+  }
 ];
 
 export default function Projects() {
