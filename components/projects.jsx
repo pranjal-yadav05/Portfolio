@@ -37,6 +37,8 @@ const projects = [
     demo: "https://unclenomad.in",
     tags: ["MERN", "Razorpay", "Cloudinary"],
     colSpan: "md:col-span-1",
+    previewScale: 1,
+    previewOffset: "-40%",
   },
   {
     id: 3,
@@ -71,7 +73,6 @@ export default function Projects() {
 
   useGSAP(
     () => {
-      // Header entrance
       if (headerRef.current) {
         gsap.fromTo(
           headerRef.current,
@@ -90,25 +91,44 @@ export default function Projects() {
         );
       }
 
-      // Projects cards entrance
       if (cardsRef.current) {
         const cards = cardsRef.current.querySelectorAll(".project-card");
-        gsap.fromTo(
-          cards,
-          { opacity: 0, y: 50 },
-          {
+
+        cards.forEach((card) => {
+          const isWide = card.classList.contains("md:col-span-2");
+          const index = Array.from(cards).indexOf(card);
+
+          // Wide cards: slide in from left (even index) or right (odd index)
+          // Narrow cards: rise up with a scale pop
+          const fromVars = isWide
+            ? {
+                opacity: 0,
+                x: index === 0 ? -80 : 80,
+                y: 0,
+                scale: 0.97,
+              }
+            : {
+                opacity: 0,
+                x: 0,
+                y: 60,
+                scale: 0.94,
+              };
+
+          gsap.fromTo(card, fromVars, {
             opacity: 1,
+            x: 0,
             y: 0,
-            duration: 0.6,
-            stagger: 0.15,
-            ease: "power2.out",
+            scale: 1,
+            duration: 0.75,
+            delay: index * 0.1,
+            ease: isWide ? "power3.out" : "back.out(1.4)",
             scrollTrigger: {
-              trigger: cardsRef.current,
-              start: "top 80%",
+              trigger: card,
+              start: "top 88%",
               toggleActions: "play none none none",
             },
-          },
-        );
+          });
+        });
       }
     },
     { scope: sectionRef },
