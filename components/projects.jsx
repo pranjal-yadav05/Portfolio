@@ -14,14 +14,17 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
   {
     id: 1,
-    title: "SmartBlog",
+    title: "LuminaRAG",
     description:
-      "SmartBlog is an AI-powered blogging platform that enables users to create blog posts effortlessly using the Gemini API, streamlining content generation with intelligent assistance.",
-    image: "/smartblog.png",
-    logo: "/smartblog-logo.png",
-    repo: "https://github.com/pranjal-yadav05/SmartBlog",
-    demo: "https://smart-blog-one.vercel.app",
-    tags: ["Spring Boot", "Next.js", "Gemini"],
+      "A full-stack PDF AI assistant that lets users upload documents, ask natural-language questions, and receive grounded answers with visual evidence highlighting. Built with a custom RAG pipeline featuring semantic retrieval, PDF chunking, token-level highlight mapping, Cloudinary-backed persistence, and multi-session conversational memory.",
+    image: "/luminarag.png",
+    logo: "/lumina-logo.png",
+    repo: "https://github.com/pranjal-yadav05/LuminaRAG",
+    demo: "https://lumina-rag.vercel.app",
+    tags: ["Next.js", "FastAPI", "MongoDB", "OpenRouter", "RAG", "Cloudinary"],
+    colSpan: "md:col-span-2",
+    previewScale: 0.88,
+    previewOffset: "-15%",
   },
   {
     id: 2,
@@ -33,6 +36,7 @@ const projects = [
     repo: "https://github.com/pranjal-yadav05/UncleNomad",
     demo: "https://unclenomad.in",
     tags: ["MERN", "Razorpay", "Cloudinary"],
+    colSpan: "md:col-span-1",
   },
   {
     id: 3,
@@ -44,7 +48,20 @@ const projects = [
     repo: "https://github.com/pranjal-yadav05/Lyceum",
     demo: "https://lyceum.vercel.app",
     tags: ["MERN", "PeerJS", "Web Sockets"],
-  }
+    colSpan: "md:col-span-1",
+  },
+  {
+    id: 4,
+    title: "SmartBlog",
+    description:
+      "SmartBlog is an AI-powered blogging platform that enables users to create blog posts effortlessly using the Gemini API, streamlining content generation with intelligent assistance.",
+    image: "/smartblog.png",
+    logo: "/smartblog-logo.png",
+    repo: "https://github.com/pranjal-yadav05/SmartBlog",
+    demo: "https://smart-blog-one.vercel.app",
+    tags: ["Spring Boot", "Next.js", "Gemini"],
+    colSpan: "md:col-span-2",
+  },
 ];
 
 export default function Projects() {
@@ -52,47 +69,50 @@ export default function Projects() {
   const headerRef = useRef(null);
   const cardsRef = useRef(null);
 
-  useGSAP(() => {
-    // Header entrance
-    if (headerRef.current) {
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
+  useGSAP(
+    () => {
+      // Header entrance
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
           },
-        }
-      );
-    }
+        );
+      }
 
-    // Projects cards entrance
-    if (cardsRef.current) {
-      const cards = cardsRef.current.querySelectorAll('.project-card');
-      gsap.fromTo(
-        cards,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.15,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: cardsRef.current,
-            start: "top 80%",
-            toggleActions: "play none none none",
+      // Projects cards entrance
+      if (cardsRef.current) {
+        const cards = cardsRef.current.querySelectorAll(".project-card");
+        gsap.fromTo(
+          cards,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
           },
-        }
-      );
-    }
-  }, { scope: sectionRef });
+        );
+      }
+    },
+    { scope: sectionRef },
+  );
 
   return (
     <section
@@ -129,9 +149,7 @@ export default function Projects() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div
-          ref={headerRef}
-          className="mb-10 md:mb-14 text-center">
+        <div ref={headerRef} className="mb-10 md:mb-14 text-center">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-3 text-white">
             <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-white/40">
               Projects
@@ -142,24 +160,35 @@ export default function Projects() {
           </p>
         </div>
 
-        <div 
+        <div
           ref={cardsRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-          {projects.map((project, index) => (
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          {projects.map((project) => (
             <div
               key={project.id}
-              className="project-card bg-[#151518]/80 backdrop-blur-sm rounded-2xl border border-white/10 shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 relative">
+              className={`project-card ${project.colSpan} bg-[#151518]/80 backdrop-blur-sm rounded-2xl border border-white/10 shadow-lg overflow-hidden group hover:shadow-xl transition-shadow duration-300 relative`}>
               {/* Project Image */}
               <div
                 onClick={() => window.open(project.demo, "_blank")}
                 className="relative overflow-hidden h-48 cursor-pointer">
                 <iframe
                   src={project.demo}
-                  className="w-full h-48 border-none"
                   sandbox="allow-scripts allow-same-origin"
                   loading="lazy"
+                  scrolling="no"
+                  style={{
+                    width: "100%",
+                    height: project.previewScale ? "900px" : "100%",
+                    border: "none",
+                    overflow: "hidden",
+                    pointerEvents: "none",
+                    ...(project.previewScale && {
+                      transform: `scale(${project.previewScale}) translateY(${project.previewOffset})`,
+                      transformOrigin: "top center",
+                    }),
+                  }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#121212] to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#121212] to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
               </div>
 
               {/* Project Content */}
@@ -257,4 +286,3 @@ export default function Projects() {
     </section>
   );
 }
-
