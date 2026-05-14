@@ -11,10 +11,10 @@ import {
   Phone,
   MapPin,
 } from "lucide-react";
-import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import Signature from "./signature"; // adjust path as needed
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -50,37 +50,38 @@ export default function Contact() {
     },
   ];
 
-  useGSAP(() => {
-    // Entrance animation
-    if (contentRef.current) {
-      gsap.fromTo(
-        contentRef.current,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: contentRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-        }
-      );
-    }
-  }, { scope: sectionRef });
+  useGSAP(
+    () => {
+      if (contentRef.current) {
+        gsap.fromTo(
+          contentRef.current,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: contentRef.current,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+    },
+    { scope: sectionRef }
+  );
 
   return (
     <section
       ref={sectionRef}
       id="contact"
-      className="stack-section stack-section-contact min-h-screen py-24 bg-[#0a0a0b] border-y border-[#232323] relative overflow-hidden flex items-center">
-      <div
-        ref={contentRef}
-        className="container mx-auto px-4 relative z-10">
+      className="stack-section stack-section-contact min-h-screen py-24 bg-[#0a0a0b] border-y border-[#232323] relative overflow-hidden flex items-center"
+    >
+      <div ref={contentRef} className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          {/* Left Pane - Contact Info */}
+          {/* Left Pane — Contact Info */}
           <div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-6 text-white">
               <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-white to-white/40">
@@ -88,7 +89,7 @@ export default function Contact() {
               </span>
             </h2>
             <p className="text-[#888] mb-8">
-              Feel free to reach out - for collaborations, opportunities, or
+              Feel free to reach out — for collaborations, opportunities, or
               accidental deep conversations
             </p>
 
@@ -138,26 +139,22 @@ export default function Contact() {
                   style={{ backgroundColor: link.color }}
                   whileHover={{ y: -5 }}
                   whileTap={{ scale: 0.9 }}
-                  aria-label={link.name}>
+                  aria-label={link.name}
+                >
                   {link.icon}
                 </motion.a>
               ))}
             </div>
           </div>
 
-          {/* Right Pane - GIF */}
-          <div className="flex justify-center">
-            <Image
-              src="/contact-me.gif" // Replace with your actual GIF path
-              alt="Animated Preview"
-              width={500}
-              height={500}
-              className="rounded-xl shadow-lg"
-            />
+          {/* Right Pane — Animated Signature */}
+          <div className="flex justify-center items-center">
+            <div className="text-white opacity-90">
+              <Signature />
+            </div>
           </div>
         </div>
       </div>
     </section>
   );
 }
-
