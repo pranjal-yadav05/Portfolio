@@ -66,7 +66,7 @@ export default function Signature() {
           strokeLinejoin="round"
           style={{
             transition:
-              'stroke-dashoffset 4.5s cubic-bezier(0.65, 0, 0.35, 1)',
+              'stroke-dashoffset 3s cubic-bezier(0.65, 0, 0.35, 1)',
           }}
         />
       </svg>

@@ -8,10 +8,12 @@ import Contact from "@/components/contact";
 import Books from "@/components/books";
 import Footer from "@/components/footer";
 
+import BlurStack from "@/components/ui/blur-stack";
+
 export default function Home() {
   return (
     <SmoothScroll>
-      <main className="min-h-screen overflow-x-hidden">
+      <main className="relative min-h-screen overflow-x-hidden">
         <Hero />
         <Experience />
         <Skills />
@@ -20,6 +22,9 @@ export default function Home() {
         <Books />
         <Contact />
         <Footer />
+
+        {/* Bottom blur overlay */}
+        <BlurStack className="pointer-events-none fixed bottom-0 left-0 right-0 h-40 z-50" />
       </main>
     </SmoothScroll>
   );

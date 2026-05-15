@@ -2,7 +2,15 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Twitter, Code, Zap, ChevronDown } from "lucide-react";
+import {
+  ArrowDown,
+  Github,
+  Linkedin,
+  Twitter,
+  Code,
+  Zap,
+  ChevronDown,
+} from "lucide-react";
 import NowPlaying from "./nowplaying";
 import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
@@ -17,7 +25,7 @@ export default function Hero() {
   const [isMobile, setIsMobile] = useState(false);
   const [activeInterest, setActiveInterest] = useState(null);
   const router = useRouter();
-  
+
   // Refs for GSAP animations
   const heroRef = useRef(null);
   const headingRef = useRef(null);
@@ -42,100 +50,104 @@ export default function Hero() {
   }, []);
 
   // GSAP scroll animations
-  useGSAP(() => {
-    const elements = [
-      subtitleRef.current,
-      headingRef.current,
-      roleRef.current,
-      interestsRef.current,
-      descriptionRef.current,
-      buttonsRef.current,
-      socialsRef.current,
-    ].filter(Boolean);
+  useGSAP(
+    () => {
+      const elements = [
+        subtitleRef.current,
+        headingRef.current,
+        roleRef.current,
+        interestsRef.current,
+        descriptionRef.current,
+        buttonsRef.current,
+        socialsRef.current,
+      ].filter(Boolean);
 
-    // Initial stagger animation on load
-    gsap.fromTo(
-      elements,
-      {
-        opacity: 0,
-        y: isMobile ? 30 : 60,
-        scale: 0.95,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: isMobile ? 0.6 : 0.8,
-        stagger: isMobile ? 0.1 : 0.15,
-        ease: "power3.out",
-        delay: 0.3,
-      }
-    );
-
-    // Image reveal animation
-    if (imageRef.current) {
+      // Initial stagger animation on load
       gsap.fromTo(
-        imageRef.current,
+        elements,
         {
           opacity: 0,
-          scale: 0.8,
-          rotateY: -15,
+          y: isMobile ? 30 : 60,
+          scale: 0.95,
         },
         {
           opacity: 1,
+          y: 0,
           scale: 1,
-          rotateY: 0,
-          duration: 1,
+          duration: isMobile ? 0.6 : 0.8,
+          stagger: isMobile ? 0.1 : 0.15,
           ease: "power3.out",
-          delay: 0.5,
-        }
+          delay: 0.3,
+        },
       );
-    }
 
-    // Parallax effect on scroll (desktop only)
-    if (!isMobile && heroRef.current) {
-      gsap.to(heroRef.current.querySelector('.hero-content'), {
-        yPercent: 30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
-
-      // Fade out hero on scroll
-      gsap.to(heroRef.current, {
-        opacity: 0.3,
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "center top",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
-    }
-
-    // Interest boxes stagger animation on hover area
-    const interestBoxes = interestsRef.current?.querySelectorAll('.interest-box');
-    if (interestBoxes?.length) {
-      interestBoxes.forEach((box, index) => {
+      // Image reveal animation
+      if (imageRef.current) {
         gsap.fromTo(
-          box,
-          { opacity: 0, x: -20, rotateZ: -2 },
+          imageRef.current,
+          {
+            opacity: 0,
+            scale: 0.8,
+            rotateY: -15,
+          },
           {
             opacity: 1,
-            x: 0,
-            rotateZ: 0,
-            duration: 0.5,
-            delay: 0.8 + index * 0.1,
-            ease: "back.out(1.7)",
-          }
+            scale: 1,
+            rotateY: 0,
+            duration: 1,
+            ease: "power3.out",
+            delay: 0.5,
+          },
         );
-      });
-    }
-  }, { scope: heroRef, dependencies: [isMobile] });
+      }
+
+      // Parallax effect on scroll (desktop only)
+      if (!isMobile && heroRef.current) {
+        gsap.to(heroRef.current.querySelector(".hero-content"), {
+          yPercent: 30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1,
+          },
+        });
+
+        // Fade out hero on scroll
+        gsap.to(heroRef.current, {
+          opacity: 0.3,
+          scrollTrigger: {
+            trigger: heroRef.current,
+            start: "center top",
+            end: "bottom top",
+            scrub: 1,
+          },
+        });
+      }
+
+      // Interest boxes stagger animation on hover area
+      const interestBoxes =
+        interestsRef.current?.querySelectorAll(".interest-box");
+      if (interestBoxes?.length) {
+        interestBoxes.forEach((box, index) => {
+          gsap.fromTo(
+            box,
+            { opacity: 0, x: -20, rotateZ: -2 },
+            {
+              opacity: 1,
+              x: 0,
+              rotateZ: 0,
+              duration: 0.5,
+              delay: 0.8 + index * 0.1,
+              ease: "back.out(1.7)",
+            },
+          );
+        });
+      }
+    },
+    { scope: heroRef, dependencies: [isMobile] },
+  );
 
   // Animation variants for staggered animations - simplified for mobile
   const containerVariants = {
@@ -243,7 +255,9 @@ export default function Hero() {
             <div ref={subtitleRef}>
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-4 text-sm md:text-base text-[#9ca3af]">
                 <div className="h-px w-8 bg-sky-500/50 rounded-full" />
-                <span className="uppercase tracking-[0.18em] text-white/70">Hello, I'm</span>
+                <span className="uppercase tracking-[0.18em] text-white/70">
+                  Hello, I'm
+                </span>
                 <div className="h-px w-8 bg-sky-500/50 rounded-full" />
               </div>
             </div>
@@ -303,16 +317,14 @@ export default function Hero() {
               </span>
             </div>
 
-            <div
-              ref={interestsRef}
-              className="relative mb-8 hero-stagger">
+            <div ref={interestsRef} className="relative mb-8 hero-stagger">
               <div className="flex items-center justify-center lg:justify-start gap-3 mb-3 text-[#c0c0c0]">
                 <span className="text-xs md:text-sm uppercase tracking-[0.18em] text-[#9ca3af]">
                   Also a
                 </span>
               </div>
-              <div className="flex flex-wrap justify-center lg:justify-start gap-3">
-                {[                  
+              <div className="flex flex-wrap items-start justify-center lg:justify-start gap-3">
+                {[
                   {
                     label: "Music Enthusiast",
                     emoji: "🎧",
@@ -328,7 +340,7 @@ export default function Hero() {
                   {
                     label: "Sketcher",
                     emoji: "✏️",
-                  }
+                  },
                 ].map((item, idx) => (
                   <motion.button
                     type="button"
@@ -341,22 +353,27 @@ export default function Hero() {
                     whileHover={{ scale: 1.08 }}
                     whileTap={{ scale: 0.96 }}
                     transition={{ duration: 0.2 }}
-                    className={`interest-box group relative inline-flex flex-col items-start gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-medium border border-white/10 bg-white/5 text-white/80 shadow-[0_0_0_0_rgba(56,189,248,0)] hover:bg-white/10 hover:border-white/20 cursor-pointer hover:border-sky-500/80 hover:bg-[#0f172a] transition-all duration-200 z-10 ${activeInterest === idx ? 'border-sky-500/80 bg-[#0f172a] shadow-[0_0_18px_0_rgba(56,189,248,0.55)]' : ''}`}>
+                    className={`interest-box group relative inline-flex flex-col items-start gap-2 px-4 py-2.5 rounded-xl text-xs md:text-sm font-medium border border-white/10 bg-white/5 text-white/80 shadow-[0_0_0_0_rgba(56,189,248,0)] hover:bg-white/10 hover:border-white/20 cursor-pointer hover:border-sky-500/80 hover:bg-[#0f172a] transition-all duration-200 z-10 ${activeInterest === idx ? "border-sky-500/80 bg-[#0f172a] shadow-[0_0_18px_0_rgba(56,189,248,0.55)]" : ""}`}>
                     <div className="flex items-center justify-between gap-2 w-full">
                       <div className="flex items-center gap-2 whitespace-nowrap">
-                        <span className="text-base md:text-lg">{item.emoji}</span>
+                        <span className="text-base md:text-lg">
+                          {item.emoji}
+                        </span>
                         <span>{item.label}</span>
                       </div>
-                      <ChevronDown 
-                        size={14} 
+                      <ChevronDown
+                        size={14}
                         className={`text-sky-400/70 transition-transform duration-300 ${
-                          isMobile 
-                            ? (activeInterest === idx ? 'rotate-180' : 'rotate-0') 
-                            : 'group-hover:rotate-180'
-                        }`} 
+                          isMobile
+                            ? activeInterest === idx
+                              ? "rotate-180"
+                              : "rotate-0"
+                            : "group-hover:rotate-180"
+                        }`}
                       />
                     </div>
-                    <div className={`max-h-0 overflow-hidden transition-all duration-300 ease-in-out ${isMobile ? (activeInterest === idx ? 'max-h-32' : 'max-h-0') : 'group-hover:max-h-32'}`}>
+                    <div
+                      className={`max-h-0 overflow-hidden transition-all duration-300 ease-in-out ${isMobile ? (activeInterest === idx ? "max-h-32" : "max-h-0") : "group-hover:max-h-32"}`}>
                       <div className="pt-2 border-t border-white/10">
                         <p className="text-[10px] md:text-xs text-[#9ca3af] leading-relaxed max-w-[280px] text-left">
                           {traitDescriptions[item.label]}
@@ -410,12 +427,12 @@ export default function Hero() {
               through a semiconductor.
             </p>
 
-            <div
+            {/* <div
               ref={buttonsRef}
               className="flex flex-wrap justify-center lg:justify-start gap-4 mb-10">
               <motion.a
                 href="#projects"
-                className="px-8 py-4 bg-sky-600 hover:bg-sky-500 text-white rounded-lg shadow-lg transition-all"
+                className="px-8 py-4 rounded-xl border border-white/10 bg-[#0f172a]/80 backdrop-blur-md text-white shadow-[0_0_20px_rgba(56,189,248,0.12)] hover:border-sky-400/40 hover:bg-[#111827] transition-all duration-300"
                 whileHover={
                   !isMobile
                     ? {
@@ -447,7 +464,7 @@ export default function Hero() {
                   <span>Connect With Me</span>
                 </span>
               </motion.a>
-            </div>
+            </div> */}
 
             <div ref={socialsRef}>
               <div className="flex justify-center lg:justify-start space-x-5">
@@ -493,7 +510,7 @@ export default function Hero() {
                       <Icon size={22} />
                       <span className="hidden md:inline">{label}</span>
                     </motion.a>
-                  )
+                  ),
                 )}
               </div>
             </div>

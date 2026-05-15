@@ -14,17 +14,15 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
   {
     id: 1,
-    title: "LuminaRAG",
+    title: "SmartBlog",
     description:
-      "A full-stack PDF AI assistant that lets users upload documents, ask natural-language questions, and receive grounded answers with visual evidence highlighting. Built with a custom RAG pipeline featuring semantic retrieval, PDF chunking, token-level highlight mapping, Cloudinary-backed persistence, and multi-session conversational memory.",
-    image: "/luminarag.png",
-    logo: "/lumina-logo.png",
-    repo: "https://github.com/pranjal-yadav05/LuminaRAG",
-    demo: "https://lumina-rag.vercel.app",
-    tags: ["Next.js", "FastAPI", "MongoDB", "OpenRouter", "RAG", "Cloudinary"],
+      "SmartBlog is an AI-powered blogging platform that enables users to create blog posts effortlessly using the Gemini API, streamlining content generation with intelligent assistance.",
+    image: "/smartblog.png",
+    logo: "/smartblog-logo.png",
+    repo: "https://github.com/pranjal-yadav05/SmartBlog",
+    demo: "https://smart-blog-one.vercel.app",
+    tags: ["Spring Boot", "Next.js", "Gemini"],
     colSpan: "md:col-span-2",
-    previewScale: 0.88,
-    previewOffset: "-15%",
   },
   {
     id: 2,
@@ -54,16 +52,19 @@ const projects = [
   },
   {
     id: 4,
-    title: "SmartBlog",
+    title: "LuminaRAG",
     description:
-      "SmartBlog is an AI-powered blogging platform that enables users to create blog posts effortlessly using the Gemini API, streamlining content generation with intelligent assistance.",
-    image: "/smartblog.png",
-    logo: "/smartblog-logo.png",
-    repo: "https://github.com/pranjal-yadav05/SmartBlog",
-    demo: "https://smart-blog-one.vercel.app",
-    tags: ["Spring Boot", "Next.js", "Gemini"],
+      "A full-stack PDF AI assistant that lets users upload documents, ask natural-language questions, and receive grounded answers with visual evidence highlighting. Built with a custom RAG pipeline featuring semantic retrieval, PDF chunking, token-level highlight mapping, Cloudinary-backed persistence, and multi-session conversational memory.",
+    image: "/luminarag.png",
+    logo: "/lumina-logo.png",
+    repo: "https://github.com/pranjal-yadav05/LuminaRAG",
+    demo: "https://lumina-rag.vercel.app",
+    tags: ["Next.js", "FastAPI", "MongoDB", "OpenRouter", "RAG", "Cloudinary"],
     colSpan: "md:col-span-2",
+    previewScale: 0.88,
+    previewOffset: "-15%",
   },
+  
 ];
 
 export default function Projects() {

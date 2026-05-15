@@ -79,6 +79,10 @@ export default function Footer() {
             © {currentYear} Pranjal Yadav. All rights go to AI.
           </p>
         </div>
+
+        <div className="border-t border-gray-800 mt-10 pt-6 text-center">
+          
+        </div>
       </div>
     </footer>
   );
