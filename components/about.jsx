@@ -7,6 +7,7 @@ import { Code, Lightbulb, GraduationCap, Rocket } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import ButtonLink from "./ui/button-link";
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -20,46 +21,49 @@ export default function About() {
 
   const toggleExpanded = () => setExpanded(!expanded);
 
-  useGSAP(() => {
-    // Header entrance
-    if (headerRef.current) {
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
+  useGSAP(
+    () => {
+      // Header entrance
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: "top 85%",
+              toggleActions: "play none none none",
+            },
           },
-        }
-      );
-    }
+        );
+      }
 
-    // Image and content entrance
-    if (imageRef.current && contentRef.current) {
-      gsap.fromTo(
-        [imageRef.current, contentRef.current],
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: imageRef.current,
-            start: "top 80%",
-            toggleActions: "play none none none",
+      // Image and content entrance
+      if (imageRef.current && contentRef.current) {
+        gsap.fromTo(
+          [imageRef.current, contentRef.current],
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: imageRef.current,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
           },
-        }
-      );
-    }
-  }, { scope: sectionRef });
+        );
+      }
+    },
+    { scope: sectionRef },
+  );
 
   return (
     <section
@@ -102,16 +106,12 @@ export default function About() {
               About Me
             </span>
           </h2>
-          <p className="text-[#888] max-w-2xl mx-auto">
-            Who the hell am I?
-          </p>
+          <p className="text-[#888] max-w-2xl mx-auto">Who the hell am I?</p>
         </div>
 
         <div className="flex flex-col items-center justify-center w-full">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 w-full max-w-6xl">
-            <div
-              ref={imageRef}
-              className="lg:col-span-2 flex justify-center">
+            <div ref={imageRef} className="lg:col-span-2 flex justify-center">
               <div className="relative w-64 h-64 md:w-80 md:h-80">
                 <motion.div
                   animate={{
@@ -140,9 +140,7 @@ export default function About() {
               </div>
             </div>
 
-            <div
-              ref={contentRef}
-              className="lg:col-span-3 w-full">
+            <div ref={contentRef} className="lg:col-span-3 w-full">
               <div className="bg-[#151518]/80 backdrop-blur-sm rounded-2xl border border-white/10 shadow-lg p-8 w-full">
                 <h3 className="text-2xl font-bold mb-4 text-[#f0f0f0]">
                   Hi there! 👋 I'm Pranjal
@@ -188,13 +186,12 @@ export default function About() {
                 </motion.div>
 
                 <div className="flex justify-center">
-                  <motion.button
+                  <ButtonLink
+                    label={expanded ? "View Less" : "Know More"}
+                    variant="gradient"
+                    size="default"
                     onClick={toggleExpanded}
-                    className="mt-6 px-6 py-2 bg-gradient-to-r from-sky-500 to-emerald-400 text-white rounded-full hover:shadow-lg transition-all"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}>
-                    {expanded ? "View Less" : "Know More"}
-                  </motion.button>
+                  />
                 </div>
               </div>
             </div>
@@ -204,4 +201,3 @@ export default function About() {
     </section>
   );
 }
-

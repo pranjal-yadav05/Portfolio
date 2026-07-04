@@ -11,6 +11,7 @@ import {
   Phone,
   MapPin,
 } from "lucide-react";
+import ButtonLink from "./ui/button-link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -26,27 +27,23 @@ export default function Contact() {
   const socialLinks = [
     {
       name: "LinkedIn",
-      icon: <Linkedin size={24} />,
+      icon: "linkedin",
       url: "https://www.linkedin.com/in/pranjalyadavhere/",
-      color: "#0077B5",
     },
     {
       name: "Instagram",
-      icon: <Instagram size={24} />,
+      icon: "instagram",
       url: "https://www.instagram.com/pranjal.ydv_/",
-      color: "#E4405F",
     },
     {
       name: "Twitter",
-      icon: <Twitter size={24} />,
+      icon: "twitter",
       url: "https://twitter.com/PranjalYad69290",
-      color: "#1DA1F2",
     },
     {
       name: "GitHub",
-      icon: <Github size={24} />,
+      icon: "github",
       url: "https://github.com/pranjal-yadav05",
-      color: "#333",
     },
   ];
 
@@ -66,19 +63,18 @@ export default function Contact() {
               start: "top 85%",
               toggleActions: "play none none none",
             },
-          }
+          },
         );
       }
     },
-    { scope: sectionRef }
+    { scope: sectionRef },
   );
 
   return (
     <section
       ref={sectionRef}
       id="contact"
-      className="stack-section stack-section-contact min-h-screen py-24 bg-[#0a0a0b] border-y border-[#232323] relative overflow-hidden flex items-center"
-    >
+      className="stack-section stack-section-contact min-h-screen py-24 bg-[#0a0a0b] border-y border-[#232323] relative overflow-hidden flex items-center">
       <div ref={contentRef} className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
           {/* Left Pane — Contact Info */}
@@ -128,21 +124,18 @@ export default function Contact() {
             <h4 className="text-lg font-semibold mb-4 text-[#f0f0f0]">
               Connect With Me
             </h4>
-            <div className="flex space-x-4">
+            <div className="flex flex-wrap gap-2">
               {socialLinks.map((link) => (
-                <motion.a
+                <ButtonLink
                   key={link.name}
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full flex items-center justify-center text-white shadow-lg"
-                  style={{ backgroundColor: link.color }}
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.9 }}
-                  aria-label={link.name}
-                >
-                  {link.icon}
-                </motion.a>
+                  label={link.name}
+                  icon={link.icon}
+                  variant="outline"
+                  size="sm"
+                />
               ))}
             </div>
           </div>

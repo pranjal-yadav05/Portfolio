@@ -6,6 +6,7 @@ import { Github, ExternalLink, ArrowRight } from "lucide-react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ButtonLink from "./ui/button-link";
 import { useGSAP } from "@gsap/react";
 
 // Register GSAP plugins
@@ -64,7 +65,6 @@ const projects = [
     previewScale: 0.88,
     previewOffset: "-15%",
   },
-  
 ];
 
 export default function Projects() {
@@ -251,27 +251,27 @@ export default function Projects() {
                 {/* Buttons: Repo & Demo */}
                 <div className="flex justify-between items-center">
                   {/* GitHub Repo */}
-                  <motion.a
+                  <ButtonLink
                     href={project.repo}
+                    label="Repo"
+                    icon="github"
+                    variant="ghost"
+                    size="sm"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center text-[#9d4edd] hover:text-[#8a3dcb] transition-colors"
-                    whileHover={{ scale: 1.05 }}>
-                    <Github size={18} className="mr-1" />
-                    <span>Repo</span>
-                  </motion.a>
+                  />
 
                   {/* Demo Link (if available) */}
                   {project.demo && (
-                    <motion.a
+                    <ButtonLink
                       href={project.demo}
+                      label="Visit"
+                      icon="external"
+                      variant="accent"
+                      size="sm"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center text-[#9d4edd] hover:text-[#8a3dcb] transition-colors"
-                      whileHover={{ scale: 1.05 }}>
-                      <ExternalLink size={18} className="mr-1" />
-                      <span>Visit</span>
-                    </motion.a>
+                    />
                   )}
                 </div>
               </div>
@@ -289,19 +289,16 @@ export default function Projects() {
 
         {/* View More Button */}
         <div className="mt-12 text-center">
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <ButtonLink
             href="https://github.com/pranjal-yadav05"
+            label="View More on GitHub"
+            icon="github"
+            trailingArrow
+            variant="default"
+            size="default"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center px-6 py-3 bg-[#3d3d3d] hover:bg-[#4d4d4d] text-[#f0f0f0] rounded-full transition-all duration-300 hover:shadow-lg group">
-            <span>View More on GitHub</span>
-            <ArrowRight
-              size={16}
-              className="ml-2 transform group-hover:translate-x-1 transition-transform"
-            />
-          </motion.a>
+          />
         </div>
       </div>
     </section>
