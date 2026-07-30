@@ -14,10 +14,23 @@ gsap.registerPlugin(ScrollTrigger);
 const BOOKS = [
   {
     id: 1,
-    title: "The Almanack of Naval Ravikant",
-    author: "Eric Jorgenson",
+    title: "The Problems of Philosophy",
+    author: "Bertrand Russell",
     status: "Currently Reading",
     statusColor: "text-amber-400 border-amber-400/30 bg-amber-400/10",
+    description: "A concise introduction to the central questions of philosophy, exploring knowledge, reality, appearance, truth, and the limits of human understanding through clear and rigorous reasoning.",
+    image: "/book_the_problems_of_philosophy.jpg",
+    spineColor: "#4b5563",
+    spineTextColor: "#f9fafb",
+    height: "h-62",
+    width: "w-8"
+  },
+  {
+    id: 2,
+    title: "The Almanack of Naval Ravikant",
+    author: "Eric Jorgenson",
+    status: "Read",
+    statusColor: "text-emerald-400 border-emerald-400/30 bg-emerald-400/10",
     description: "A collection of wisdom and insights from entrepreneur and investor Naval Ravikant, covering wealth creation, happiness, decision-making, and living a meaningful life.",
     image: "/book_almanack_naval_ravikant.jpg",
     spineColor: "#0f172a",
@@ -26,7 +39,7 @@ const BOOKS = [
     width: "w-10"
   },
   {
-    id: 2,
+    id: 3,
     title: "Why I am an Atheist",
     author: "Bhagat Singh",
     status: "Read",
@@ -39,7 +52,7 @@ const BOOKS = [
     width: "w-5"
   },
   {
-    id: 3,
+    id: 4,
     title: "Samkhya Karika",
     author: "Ishvarakrishna",
     status: "Currently Reading",
@@ -52,7 +65,7 @@ const BOOKS = [
     width: "w-6"
   },
   {
-    id: 4,
+    id: 5,
     title: "1984",
     author: "George Orwell",
     status: "Read",
@@ -65,7 +78,7 @@ const BOOKS = [
     width: "w-12"
   },
   {
-    id: 5,
+    id: 6,
     title: "Animal Farm",
     author: "George Orwell",
     status: "Read",
@@ -76,19 +89,6 @@ const BOOKS = [
     spineTextColor: "#ecf0f1",
     height: "h-56",
     width: "w-5"
-  },
-  {
-    id: 6,
-    title: "Immortals of Meluha",
-    author: "Amish Tripathi",
-    status: "Read",
-    statusColor: "text-emerald-400 border-emerald-400/30 bg-emerald-400/10",
-    description: "The journey of Shiva in the land of Meluha, blending mythology with a gripping narrative about destiny and karma.",
-    image: "/book_meluha.png",
-    spineColor: "#d35400", // Orange/brown spine
-    spineTextColor: "#ecf0f1",
-    height: "h-60",
-    width: "w-8"
   },
   {
     id: 7,
@@ -103,6 +103,19 @@ const BOOKS = [
     height: "h-52",
     width: "w-14"
   },
+  {
+    id: 8,
+    title: "Immortals of Meluha",
+    author: "Amish Tripathi",
+    status: "Read",
+    statusColor: "text-emerald-400 border-emerald-400/30 bg-emerald-400/10",
+    description: "The journey of Shiva in the land of Meluha, blending mythology with a gripping narrative about destiny and karma.",
+    image: "/book_meluha.png",
+    spineColor: "#d35400", // Orange/brown spine
+    spineTextColor: "#ecf0f1",
+    height: "h-60",
+    width: "w-8"
+  }
 ];
 
 export default function Books() {

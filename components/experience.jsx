@@ -171,26 +171,6 @@ export default function Experience() {
         </div>
 
         <div className="md:grid md:grid-cols-[auto,1fr] md:gap-8 items-start">
-          {/* Timeline spine on desktop, spans the full list */}
-          <div
-            ref={timelineRef}
-            className="hidden md:flex flex-col items-center pt-3 self-stretch">
-            {EXPERIENCES.map((exp, i) => (
-              <div key={exp.id} className="flex flex-col items-center flex-1">
-                <div
-                  className={
-                    exp.isCurrent
-                      ? "w-3 h-3 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(74,222,128,0.8)]"
-                      : "w-3 h-3 rounded-full bg-[#555]"
-                  }
-                />
-                {i < EXPERIENCES.length - 1 && (
-                  <div className="w-px flex-1 bg-gradient-to-b from-[#555]/60 via-[#555]/20 to-transparent" />
-                )}
-              </div>
-            ))}
-          </div>
-
           <div className="flex flex-col gap-6">
             {EXPERIENCES.map((exp) => {
               const expanded = !!expandedIds[exp.id];
